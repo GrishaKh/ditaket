@@ -1,0 +1,67 @@
+{
+  "Site": {
+    "name": "Ditaket",
+    "tagline": "Civic election monitoring"
+  },
+  "Nav": {
+    "home": "Home",
+    "stations": "Stations",
+    "report": "Report",
+    "stats": "Statistics",
+    "info": "Info",
+    "about": "About"
+  },
+  "Home": {
+    "openBadge": "Reporting is open",
+    "heroTitleA": "Your voice",
+    "heroTitleB": "matters",
+    "heroSubtitle": "Ditaket lets any citizen anonymously report electoral violations and follow the election process.",
+    "searchPlaceholder": "Find your polling station — number, address, or community",
+    "searchAction": "Search",
+    "howItWorksTitle": "How it works",
+    "step1Title": "Find the station",
+    "step1Body": "Search by number, address, community, or venue name.",
+    "step2Title": "Report anonymously",
+    "step2Body": "No account, no phone number. Pick a category, describe what you saw, submit.",
+    "step3Title": "The team reviews",
+    "step3Body": "Volunteers verify the report; once approved it appears publicly on the station page and is shared with partner organisations."
+  },
+  "Station": {
+    "address": "Address",
+    "accessibility": "Wheelchair accessible",
+    "events": "Reports",
+    "report": "Report a violation",
+    "noEvents": "No reports yet",
+    "marz": "Region",
+    "community": "Community",
+    "stationNumber": "Station number"
+  },
+  "Report": {
+    "title": "Report a violation",
+    "subtitle": "Anonymous report for {stationId}.",
+    "category": "Category",
+    "selectCategory": "Select a category",
+    "description": "Description",
+    "descriptionPlaceholder": "Describe what you saw. Do not include personal names or ballot contents.",
+    "evidence": "Photo or short video (optional)",
+    "evidenceHint": "Photos of ballots are prohibited (Electoral Code Art. 6). Do not upload them.",
+    "submit": "Submit",
+    "successTitle": "Thank you",
+    "successBody": "Your report has been queued for moderation. It will appear on the station page once approved.",
+    "errors": {
+      "category_required": "Pick a category.",
+      "captcha_required": "Confirm you are not a robot.",
+      "captcha_failed": "Captcha verification failed. Please try again.",
+      "rate_limited": "Too many reports. Please try again later.",
+      "validation": "There is a problem with the form. Please check and retry.",
+      "generic": "Could not submit. Please try again.",
+      "network": "Network problem. Please try again."
+    }
+  },
+  "Common": {
+    "languageSwitcher": "Language",
+    "unverifiedNotice": "Unverified citizen report. Partner organisations review independently.",
+    "loading": "Loading...",
+    "back": "Back"
+  }
+}

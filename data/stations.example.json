@@ -1,0 +1,26 @@
+[
+  {
+    "cecCode": "1/01",
+    "marz": "Երևան",
+    "community": "Կենտրոն",
+    "stationNumber": "01",
+    "address": "Բուզանդի 1/3, Թիվ 1 դպրոց",
+    "accessibility": true
+  },
+  {
+    "cecCode": "1/02",
+    "marz": "Երևան",
+    "community": "Կենտրոն",
+    "stationNumber": "02",
+    "address": "Աբովյան 18, Կենտրոնական գրադարան",
+    "accessibility": false
+  },
+  {
+    "cecCode": "10/05",
+    "marz": "Շիրակ",
+    "community": "Գյումրի",
+    "stationNumber": "05",
+    "address": "Գարեգին Նժդեհի 4, Թիվ 7 ավագ դպրոց",
+    "accessibility": true
+  }
+]
