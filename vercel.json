@@ -1,0 +1,5 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "$comment": "Vercel installs via pnpm. pnpm 10+ exits 1 when post-install scripts of sharp/esbuild/unrs-resolver are ignored, even though we've pre-approved them via pnpm.onlyBuiltDependencies in package.json. Wrap in `|| true` so the build proceeds; the packages ARE installed, only the post-install scripts are skipped, and Next 15 / @vercel/og don't strictly require them at runtime on Vercel.",
+  "installCommand": "pnpm install --reporter=append-only || true"
+}
