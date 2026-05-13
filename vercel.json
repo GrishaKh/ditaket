@@ -1,4 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "pnpm install --reporter=append-only || true"
+  "installCommand": "pnpm install --reporter=append-only || true",
+  "buildCommand": "./node_modules/.bin/next build"
 }
