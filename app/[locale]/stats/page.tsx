@@ -21,35 +21,44 @@ export default async function StatsPage({
   let byCategory: { categoryId: string | null; count: number }[] = [];
   let byMarz: { marz: string; count: number }[] = [];
 
+  // Wrap in try/catch so the build doesn't fail when the schema hasn't been
+  // pushed yet (DATABASE_URL is set, but tables don't exist).
   if (hasDatabase) {
-    const db = getDb();
-    const [totalRow] = await db
-      .select({ count: sql<number>`count(*)::int` })
-      .from(schema.events)
-      .where(eq(schema.events.moderationStatus, 'approved'));
-    total = totalRow?.count ?? 0;
+    try {
+      const db = getDb();
+      const [totalRow] = await db
+        .select({ count: sql<number>`count(*)::int` })
+        .from(schema.events)
+        .where(eq(schema.events.moderationStatus, 'approved'));
+      total = totalRow?.count ?? 0;
 
-    byCategory = await db
-      .select({
-        categoryId: schema.events.categoryId,
-        count: sql<number>`count(*)::int`,
-      })
-      .from(schema.events)
-      .where(eq(schema.events.moderationStatus, 'approved'))
-      .groupBy(schema.events.categoryId);
+      byCategory = await db
+        .select({
+          categoryId: schema.events.categoryId,
+          count: sql<number>`count(*)::int`,
+        })
+        .from(schema.events)
+        .where(eq(schema.events.moderationStatus, 'approved'))
+        .groupBy(schema.events.categoryId);
 
-    byMarz = await db
-      .select({
-        marz: schema.stations.marz,
-        count: sql<number>`count(*)::int`,
-      })
-      .from(schema.events)
-      .innerJoin(
-        schema.stations,
-        eq(schema.events.stationId, schema.stations.id),
-      )
-      .where(and(eq(schema.events.moderationStatus, 'approved')))
-      .groupBy(schema.stations.marz);
+      byMarz = await db
+        .select({
+          marz: schema.stations.marz,
+          count: sql<number>`count(*)::int`,
+        })
+        .from(schema.events)
+        .innerJoin(
+          schema.stations,
+          eq(schema.events.stationId, schema.stations.id),
+        )
+        .where(and(eq(schema.events.moderationStatus, 'approved')))
+        .groupBy(schema.stations.marz);
+    } catch (e) {
+      console.warn(
+        '[ditaket] stats: DB query failed (schema not pushed?); rendering zeros',
+        e,
+      );
+    }
   }
 
   const categoryLabelOf = (id: string | null) => {
