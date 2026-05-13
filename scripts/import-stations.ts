@@ -38,8 +38,10 @@ const db = getDb();
 
 type RawStation = {
   cecCode: string;
+  district?: string;
   marz: string;
   community: string;
+  settlement?: string | null;
   stationNumber: string;
   address: string;
   accessibility?: boolean;
@@ -71,10 +73,10 @@ async function main() {
   const rows = stations.map((s) => ({
     id: urlSafeId(s.cecCode),
     cecCode: s.cecCode,
-    district: (s as { district?: string }).district ?? s.cecCode.split('/')[0] ?? '',
+    district: s.district ?? s.cecCode.split('/')[0] ?? '',
     marz: s.marz,
     community: s.community,
-    settlement: (s as { settlement?: string | null }).settlement ?? null,
+    settlement: s.settlement ?? null,
     stationNumber: s.stationNumber,
     address: s.address,
     accessibility: Boolean(s.accessibility),
@@ -82,12 +84,8 @@ async function main() {
     marzRu: armToCyrillic(s.marz),
     communityEn: armToLatin(s.community),
     communityRu: armToCyrillic(s.community),
-    settlementEn: (s as { settlement?: string | null }).settlement
-      ? armToLatin((s as { settlement: string }).settlement)
-      : null,
-    settlementRu: (s as { settlement?: string | null }).settlement
-      ? armToCyrillic((s as { settlement: string }).settlement)
-      : null,
+    settlementEn: s.settlement ? armToLatin(s.settlement) : null,
+    settlementRu: s.settlement ? armToCyrillic(s.settlement) : null,
   }));
 
   console.log(`[import-stations] upserting...`);

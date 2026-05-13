@@ -3,7 +3,7 @@ import { getDb, hasDatabase, schema } from '@/lib/db/client';
 import { VIOLATION_CATEGORIES } from '@/lib/violations/categories';
 import { ModerationRow } from './ModerationRow';
 
-const CATEGORY_LABEL_BY_ID = new Map(
+const CATEGORY_LABEL_BY_ID = new Map<string, (typeof VIOLATION_CATEGORIES)[number]>(
   VIOLATION_CATEGORIES.map((c) => [c.id, c]),
 );
 

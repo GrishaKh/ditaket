@@ -18,7 +18,7 @@ export default async function StatsPage({
   const tCommon = await getTranslations('Common');
 
   let total = 0;
-  let byCategory: { categoryId: string; count: number }[] = [];
+  let byCategory: { categoryId: string | null; count: number }[] = [];
   let byMarz: { marz: string; count: number }[] = [];
 
   if (hasDatabase) {

@@ -7,7 +7,9 @@ import { checkRateLimit } from '@/lib/rate-limit';
 import { fingerprintFromRequest, clientIp } from '@/lib/fingerprint';
 import { VIOLATION_CATEGORIES } from '@/lib/violations/categories';
 
-const VALID_CATEGORY_IDS = new Set(VIOLATION_CATEGORIES.map((c) => c.id));
+const VALID_CATEGORY_IDS: Set<string> = new Set(
+  VIOLATION_CATEGORIES.map((c) => c.id),
+);
 
 const ReportSchema = z.object({
   stationId: z.string().min(3).max(50),
