@@ -1,12 +1,20 @@
 /**
- * Violation categories — verified against the OFFICIAL Electoral Code of the
- * Republic of Armenia (Constitutional Law, English translation 2018; source:
- * translation-centre.am/pdf/Translat/HH_Codes/Electoral_Code_04052018_en.pdf).
+ * Violation categories — verified against the OFFICIAL Armenian original of
+ * the Electoral Code of the Republic of Armenia (Constitutional Law), as
+ * published by the CEC at res.elections.am/images/doc/_code.pdf.
  *
- * Each `ecArticle` cites article number + paragraph number per the Code's own
- * "Article N, part M" format. Verified May 2026.
+ * Each `ecArticle` cites article numbers from the AUTHORITATIVE Armenian text.
+ * These differ from the 2018 English translation (translation-centre.am)
+ * because of post-2018 amendments and structural renumbering:
+ *   - English "Free suffrage" (Art. 4) and "Mandatory/periodic" (Art. 7) do not
+ *     exist as standalone articles in the current Armenian Code.
+ *   - Camera/observer right is Հոդված 6(12), not Art. 8(11).
+ *   - 50m perimeter is Հոդված 21(4), not Art. 22(3).
+ *   - Campaign rules are in Հոդված 18, not Art. 19.
+ *   - Voter-assistance rule is Հոդված 65(4), not Art. 67(9).
+ *   - Voting starts at 8:00 per Հոդված 63(1); ends at 20:00 per Հոդված 67(1).
  *
- * Severity 1..5 (5 = most serious).
+ * Severity 1..5 (5 = most serious). Re-verified 2026-05-14.
  */
 export const VIOLATION_CATEGORIES = [
   {
@@ -15,12 +23,12 @@ export const VIOLATION_CATEGORIES = [
     labelEn: 'Multiple people in voting booth',
     labelRu: 'Несколько человек в кабине для голосования',
     descriptionAm:
-      'Քվեախցիկում միաժամանակ ներկա է մեկից ավելի անձ։ Հոդված 67(9) համաձայն՝ բացառությամբ ընտրողին օգնող մեկ անձի (որը պետք է հանձնաժողովի անդամ, դիտորդ կամ ԶԼՄ ներկայացուցիչ չլինի), քվեախցիկում այլ անձի ներկայությունն արգելվում է։ Հոդված 6-ը երաշխավորում է քվեի գաղտնիությունը։',
+      'Քվեախցիկում միաժամանակ ներկա է մեկից ավելի անձ։ Հոդված 65(4)-ը սահմանում է. «Քվեաթերթիկը ինքնուրույն լրացնելու հնարավորություն չունեցող ընտրողը իրավունք ունի… քվեարկության խցիկ հրավիրելու այլ անձի, որը չպետք է լինի ընտրական հանձնաժողովի անդամ, վստահված անձ: Անձն իրավունք ունի օգնելու… միայն մեկ ընտրողի»։ Հոդված 5-ը երաշխավորում է քվեարկության գաղտնիությունը։',
     descriptionEn:
-      'More than one person inside the voting booth at the same time. Per Article 67(9), the presence of another person in the booth is prohibited except for ONE permitted helper for a voter who cannot mark the ballot independently (the helper must not be a commission member, observer, or media). Article 6 guarantees secrecy of vote.',
+      'More than one person inside the voting booth at the same time. Per Հոդված 65(4) of the RA Electoral Code: a voter unable to fill in the ballot on their own may invite ONE other person into the booth — and that person cannot be a commission member or a proxy, and can assist only one such voter. Հոդված 5 guarantees secrecy of the vote.',
     descriptionRu:
-      'Более одного человека в кабине одновременно. По статье 67(9) присутствие постороннего в кабине запрещено, кроме одного помощника избирателя, который не может физически заполнить бюллетень (помощник не может быть членом комиссии, наблюдателем или представителем СМИ). Статья 6 гарантирует тайну голосования.',
-    ecArticle: 'Art. 6 · Art. 67(9)',
+      'Более одного человека в кабине одновременно. По статье 65(4) Избирательного кодекса РА: избиратель, не способный заполнить бюллетень самостоятельно, может пригласить ОДНОГО помощника, и тот не может быть членом комиссии или доверенным лицом, и помогает только одному избирателю. Статья 5 гарантирует тайну голосования.',
+    ecArticle: 'Հոդված 5 · Հոդված 65(4)',
     severity: 4,
     sortOrder: 10,
   },
@@ -30,12 +38,12 @@ export const VIOLATION_CATEGORIES = [
     labelEn: 'Ballot stuffing',
     labelRu: 'Вброс бюллетеней',
     descriptionAm:
-      'Քվեատուփի մեջ բազմակի ծրարների գցում մեկ շարժմամբ, ինչպես նաև Հոդված 67(7)-ով սահմանված ընթացակարգի շրջանցում (ընտրողը չի մոտեցել ստեղնահարված տալով՝ ինքնասոսնձվող դրոշմը չի դրվել ծրարի վրա)։ Հաշվման ժամանակ պարզվող անհամապատասխանությունները կարգավորվում են Հոդված 68-ով։',
+      'Քվեատուփի մեջ բազմակի ծրարների գցում մեկ շարժմամբ կամ Հոդված 66-ով սահմանված ընթացակարգի շրջանցում. քվեարկության ծրարը կնքող անդամը պետք է ստուգի ընտրողի անձը հաստատող փաստաթղթի վրա «տվյալ ընտրությանը մասնակցելու մասին դրոշմակնիքի բացակայությունը», դրա բացակայության դեպքում դրոշմակնիք դնի, և միայն դրանից հետո թույլատրի ծրարի՝ քվեատուփ ձգելը։ Հաշվման ընթացքում պարզվող անհամապատասխանությունները կարգավորվում են Հոդված 67-ով (Քվեարկության արդյունքների ամփոփում)։',
     descriptionEn:
-      'Multiple envelopes dropped into the ballot box in a single motion, or any bypass of the strict procedure in Article 67(7) (commission member must affix a self-adhesive stamp through the cut in the ballot envelope before the elector drops it in). Discrepancies surface during the count procedure of Article 68.',
+      'Multiple envelopes dropped into the ballot box in a single motion, or any bypass of the strict procedure in Հոդված 66 — the envelope-sealing commission member must verify that the elector\'s identity document does NOT already bear the voting-stamp; if absent, stamp the document; only then permit the envelope to be dropped into the box. Discrepancies surface during the count under Հոդված 67.',
     descriptionRu:
-      'Несколько конвертов опускаются в урну за одно движение, либо обход строгой процедуры по статье 67(7) (член комиссии должен поставить самоклеящийся штамп через прорезь конверта перед опусканием). Несоответствия выявляются при подсчёте по статье 68.',
-    ecArticle: 'Art. 67(7) · Art. 68',
+      'Несколько конвертов опускаются в урну за одно движение, либо обход строгой процедуры по статье 66 — член комиссии, ответственный за конверт, обязан проверить отсутствие штампа об участии в данных выборах на удостоверении личности избирателя; при отсутствии — поставить штамп; только тогда разрешается опустить конверт в урну. Несоответствия выявляются при подведении итогов по статье 67.',
+    ecArticle: 'Հոդված 66 · Հոդված 67',
     severity: 5,
     sortOrder: 20,
   },
@@ -45,12 +53,12 @@ export const VIOLATION_CATEGORIES = [
     labelEn: 'Carousel voting / voting in another person’s name',
     labelRu: 'Голосование вместо другого лица («карусель»)',
     descriptionAm:
-      'Քվեարկություն մեկ այլ անձի անունից, օտար փաստաթղթով, կամ նույն մարդու բազմակի քվեարկում տարբեր տեղամասերում։ Հոդված 66(2)-ը հստակ սահմանում է՝ «Ընտրողը մասնակցում է քվեարկությանը անձամբ. վստահված անձի միջոցով քվեարկությունն արգելված է»։ Հոդված 48-ը սահմանում է «մեկ ուրիշի փոխարեն քվեարկության» հետ կապված դիմումների քննման ընթացակարգը։',
+      'Քվեարկություն մեկ այլ անձի անունից, օտար փաստաթղթով, կամ նույն մարդու բազմակի քվեարկում տարբեր տեղամասերում։ Հոդված 64(1)-ը հստակ սահմանում է. «Ընտրողը քվեարկությանը մասնակցում է անձամբ. լիազորված քվեարկությունն արգելվում է»։ Հոդված 66-ի ընթացակարգով (ընտրողի անձը հաստատող փաստաթղթի դրոշմակնքում)՝ կրկնակի քվեարկությունը կանխվում է։',
     descriptionEn:
-      'Voting in someone else’s name, with another person’s document, or the same individual voting at multiple stations. Article 66(2) explicitly states: "An elector shall participate in voting in person; proxy voting shall be prohibited." Article 48 governs the procedure for complaints about "voting instead of another person".',
+      'Voting in another person’s name, with someone else’s document, or the same individual voting at multiple stations. Հոդված 64(1) is explicit: «Ընտրողը քվեարկությանը մասնակցում է անձամբ. լիազորված քվեարկությունն արգելվում է» — "An elector participates in voting in person; proxy voting is prohibited." Հոդված 66 enforces this through the stamping of the elector\'s identity document at the moment the envelope is dropped, blocking re-voting.',
     descriptionRu:
-      'Голосование от имени другого человека, по чужому документу, либо повторное голосование одного лица на разных участках. Статья 66(2) прямо устанавливает: «Избиратель участвует в голосовании лично; голосование через представителя запрещено». Статья 48 регулирует процедуру рассмотрения заявлений о голосовании вместо другого лица.',
-    ecArticle: 'Art. 48 · Art. 66(2)',
+      'Голосование от имени другого человека, по чужому документу, либо повторное голосование одного лица на разных участках. Статья 64(1) прямо устанавливает: «Избиратель участвует в голосовании лично; голосование через представителя запрещено». Статья 66 обеспечивает запрет через штамповку удостоверения личности в момент опускания конверта.',
+    ecArticle: 'Հոդված 64(1) · Հոդված 66',
     severity: 5,
     sortOrder: 25,
   },
@@ -60,12 +68,12 @@ export const VIOLATION_CATEGORIES = [
     labelEn: 'Unauthorized gathering within 50m perimeter',
     labelRu: 'Несанкционированное скопление в 50-метровой зоне',
     descriptionAm:
-      'Հոդված 22(3) համաձայն՝ քվեարկության օրը տեղամասին հարակից 50 մ շառավղով խմբային հավաքներն ու ավտոմեքենաների կուտակումներն արգելված են։ Քվեարկող քաղաքացիների սովորական հերթը չի համարվում խախտում։ Հոդված 67(13) արգելում է թեկնածուներին գտնվել տեղամասում կամ 50 մ շառավղում (բացառությամբ քվեարկելու)։',
+      'Հոդված 21(4)-ի համաձայն. «Արգելվում է քվեարկության օրը տեղամասային կենտրոնին հարող տարածքում մինչև 50 մետր շառավղով խմբերով հավաքվելը, տեղամասային կենտրոնի մուտքին հարող տարածքում մեքենաների կուտակումը: Սույն մասի դրույթների կատարումն ապահովում է Հայաստանի Հանրապետության ոստիկանությունը՝ անկախ ընտրական հանձնաժողովի պահանջից»։ Քվեարկող քաղաքացիների սովորական հերթը խախտում չէ։ Հոդված 65-ը նաև արգելում է թեկնածուին գտնվել տեղամասում կամ 50 մետր շառավղում քվեարկության ընթացքում (բացառությամբ իր քվեարկելու դեպքի)։',
     descriptionEn:
-      'Per Article 22(3), assembling in groups within a 50-metre radius of a polling station — and clusters of vehicles near the entrance — are prohibited on voting day. The normal queue of voters is NOT a violation. Article 67(13) prohibits candidates from being inside the station or within the 50m radius (except to vote themselves).',
+      'Per Հոդված 21(4): «Արգելվում է քվեարկության օրը տեղամասային կենտրոնին հարող տարածքում մինչև 50 մետր շառավղով խմբերով հավաքվելը, տեղամասային կենտրոնի մուտքին հարող տարածքում մեքենաների կուտակումը» — gathering in groups within a 50-metre radius of a polling station, and clusters of vehicles near the entrance, are prohibited on voting day. Enforcement is by the Republic of Armenia Police, independent of any commission request. The normal queue of voters is NOT a violation. Հոդված 65 also bars candidates from being inside the station or within the 50m radius during voting (except to vote themselves).',
     descriptionRu:
-      'По статье 22(3), скопление групп в радиусе 50 метров от участка и сосредоточение транспорта у входа в день голосования запрещены. Обычная очередь избирателей нарушением не является. Статья 67(13) запрещает кандидатам находиться на участке или в 50-метровой зоне (кроме самого голосования).',
-    ecArticle: 'Art. 22(3) · Art. 67(13)',
+      'По статье 21(4): запрещены в день голосования скопления групп в радиусе 50 метров от участка и сосредоточение транспорта у входа на участок. Исполнение обеспечивает полиция РА — независимо от обращения комиссии. Обычная очередь избирателей нарушением не является. Статья 65 запрещает кандидату находиться на участке или в 50-метровой зоне во время голосования (кроме самого участия в голосовании).',
+    ecArticle: 'Հոդված 21(4) · Հոդված 65',
     severity: 3,
     sortOrder: 30,
   },
@@ -75,12 +83,12 @@ export const VIOLATION_CATEGORIES = [
     labelEn: 'Repeated voter-assistance violation',
     labelRu: 'Повторный «помощник» избирателя',
     descriptionAm:
-      'Հոդված 67(9)-ը հստակ նշում է. «Անձը իրավունք ունի օգնել միայն մեկ ընտրողի, որը չի կարող ինքնուրույն լրացնել քվեաթերթը»։ Մեկ անձի կողմից մի քանի ընտրողի «օգնելը» քվեախցիկում խախտում է այս կանոնը։ Օգնողի տվյալները պետք է գրանցվեն հանձնաժողովի մատյանում։',
+      'Հոդված 65(4)-ը հստակ սահմանում է. «Անձն իրավունք ունի օգնելու քվեաթերթիկ ինքնուրույն լրացնելու հնարավորություն չունեցող միայն մեկ ընտրողի»։ Մեկ անձի կողմից մի քանի ընտրողի «օգնելը» քվեախցիկում խախտում է այս կանոնը։ Օգնող անձը չպետք է լինի ընտրական հանձնաժողովի անդամ կամ վստահված անձ։',
     descriptionEn:
-      'Article 67(9) explicitly states: "The person shall have the right to assist only ONE elector who is unable to fill in the ballot paper on his or her own." If the same person enters the booth to "help" multiple voters during the day, this rule is violated. The helper’s identity must be recorded in the precinct registration book.',
+      'Հոդված 65(4) is explicit: «Անձն իրավունք ունի օգնելու քվեաթերթիկ ինքնուրույն լրացնելու հնարավորություն չունեցող միայն մեկ ընտրողի» — "A person has the right to assist only ONE elector who is unable to fill in the ballot on their own." If the same individual enters the booth to "help" multiple voters during the day, this rule is violated. The helper cannot be a commission member or a proxy.',
     descriptionRu:
-      'Статья 67(9) прямо устанавливает: «Помощник имеет право помочь только ОДНОМУ избирателю, неспособному заполнить бюллетень самостоятельно». Если один и тот же человек входит в кабину «помогать» нескольким избирателям в течение дня — это нарушение. Личность помощника фиксируется в регистрационной книге участка.',
-    ecArticle: 'Art. 67(9)',
+      'Статья 65(4) прямо устанавливает: «Лицо имеет право помочь только ОДНОМУ избирателю, неспособному заполнить бюллетень самостоятельно». Если один и тот же человек входит в кабину «помогать» нескольким избирателям в течение дня — это нарушение. Помощник не может быть членом избирательной комиссии или доверенным лицом.',
+    ecArticle: 'Հոդված 65(4)',
     severity: 4,
     sortOrder: 40,
   },
@@ -90,12 +98,12 @@ export const VIOLATION_CATEGORIES = [
     labelEn: 'Ballot photography',
     labelRu: 'Фотографирование бюллетеня',
     descriptionAm:
-      'Քվեախցիկում քվեաթերթի լուսանկարում հեռախոսով։ Հոդված 6-ը արգելում է վերահսկողություն ընտրողի կամքի ազատ արտահայտման վրա, իսկ Հոդված 67(11)-ը նշում է. «Ընտրողն իրավունք չունի տեղամասում հայտնել, թե ինչպես է քվեարկել»։ Քվեաթերթի լուսանկարը հաճախ օգտագործվում է ձայների գնման սխեմաներում որպես «ապացույց»։',
+      'Քվեախցիկում քվեաթերթի լուսանկարում հեռախոսով։ Հոդված 5-ի համաձայն. «Քվեարկողի կամքի ազատ արտահայտման նկատմամբ վերահսկողությունն արգելվում է»։ Հոդված 65(7)-ը նշում է. «Տեղամասային կենտրոնում արգելվում է կատարած քվեարկության մասին տեղեկություններ հայտնելը»։ Քվեաթերթի լուսանկարը հաճախ օգտագործվում է ձայների գնման սխեմաներում որպես «ապացույց»։',
     descriptionEn:
-      'Photographing a marked ballot inside the booth (typically by phone). Article 6 prohibits any control over the free expression of will of an elector; Article 67(11) states: "The elector shall not have the right to announce in the polling station the way he or she has voted." Ballot photos are a common "proof" device in vote-buying schemes.',
+      'Photographing a marked ballot inside the booth (typically by phone). Հոդված 5: «Քվեարկողի կամքի ազատ արտահայտման նկատմամբ վերահսկողությունն արգելվում է» — "Control over the free expression of will of an elector is prohibited." Հոդված 65(7): «Տեղամասային կենտրոնում արգելվում է կատարած քվեարկության մասին տեղեկություններ հայտնելը» — "Providing information about the voting in the polling station is prohibited." Ballot photos are a common "proof" device in vote-buying schemes.',
     descriptionRu:
-      'Фотографирование заполненного бюллетеня в кабине (обычно на телефон). Статья 6 запрещает любой контроль над свободным выражением воли избирателя; статья 67(11) устанавливает: «Избиратель не имеет права объявлять на участке, как он проголосовал». Фотографии бюллетеней — типичный «доказательственный» инструмент в схемах подкупа.',
-    ecArticle: 'Art. 6 · Art. 67(11)',
+      'Фотографирование заполненного бюллетеня в кабине (обычно на телефон). Статья 5: «Контроль над свободным выражением воли избирателя запрещён». Статья 65(7): «На участке запрещено сообщать сведения о состоявшемся голосовании». Фотографии бюллетеней — типичный «доказательственный» инструмент в схемах подкупа.',
+    ecArticle: 'Հոդված 5 · Հոդված 65(7)',
     severity: 3,
     sortOrder: 50,
   },
@@ -105,12 +113,12 @@ export const VIOLATION_CATEGORIES = [
     labelEn: 'Voter intimidation or coercion',
     labelRu: 'Запугивание или принуждение избирателя',
     descriptionAm:
-      'Հոդված 4-ը արգելում է ընտրողին ստիպել քվեարկել թեկնածուի (կուսակցության) օգտին կամ դեմ, կամ ստիպել մասնակցել կամ չմասնակցել ընտրությունների։ Հոդված 22-ի վերնագիրը՝ «Ընտրողների կամքի ազատ արտահայտման վրա ազդեցության արգելք»։ Հոդված 6-ը արգելում է ընտրողի կամքի ազատ արտահայտման ցանկացած վերահսկողություն։',
+      'Ընտրողի վախեցում, սպառնալիք, կամ ստիպում թեկնածուի (կուսակցության) օգտին կամ դեմ քվեարկելու, կամ ընտրությանը մասնակցելու/չմասնակցելու։ Հոդված 5-ի համաձայն. «Քվեարկողի կամքի ազատ արտահայտման նկատմամբ վերահսկողությունն արգելվում է»։ Հոդված 21-ի վերնագիրը՝ «Ընտրողների կամքի ազատ արտահայտման վրա ներգործության արգելումը»՝ ներառում է ինչպես ֆիզիկական, այնպես էլ տնտեսական ճնշումը։',
     descriptionEn:
-      'Article 4 prohibits forcing an elector to vote for or against a candidate (party), or forcing participation or non-participation. Article 22 is titled "Prohibiting influence on the free expression of will of electors". Article 6 prohibits any control over the free expression of voter will.',
+      'Intimidating, threatening, or coercing an elector — to vote for or against a candidate (party), or to participate / not participate. Հոդված 5: «Քվեարկողի կամքի ազատ արտահայտման նկատմամբ վերահսկողությունն արգելվում է» — "Control over the free expression of will of an elector is prohibited." The title of Հոդված 21 itself — «Ընտրողների կամքի ազատ արտահայտման վրա ներգործության արգելումը» ("Prohibiting influence on the free expression of will of electors") — covers physical and economic pressure alike.',
     descriptionRu:
-      'Статья 4 запрещает принуждать избирателя голосовать за или против кандидата (партии) и принуждать к участию или неучастию в выборах. Статья 22 называется «Запрещение влияния на свободное волеизъявление избирателей». Статья 6 запрещает любой контроль над свободным выражением воли избирателя.',
-    ecArticle: 'Art. 4 · Art. 6 · Art. 22',
+      'Запугивание, угрозы или принуждение избирателя — голосовать за или против кандидата (партии) либо участвовать / не участвовать в выборах. Статья 5: «Контроль над свободным выражением воли избирателя запрещён». Статья 21 называется «Запрещение влияния на свободное волеизъявление избирателей» — это охватывает и физическое, и экономическое давление.',
+    ecArticle: 'Հոդված 5 · Հոդված 21',
     severity: 5,
     sortOrder: 60,
   },
@@ -120,12 +128,12 @@ export const VIOLATION_CATEGORIES = [
     labelEn: 'Obstruction of observer or media',
     labelRu: 'Препятствование наблюдателю или СМИ',
     descriptionAm:
-      'Հոդված 8(11)-ը երաշխավորում է վստահված անձանց, դիտորդների, այցելուների և ԶԼՄ-ի ներկայացուցիչների իրավունքը՝ ներկա լինել հանձնաժողովի նիստերին և քվեարկության ընթացքին, ինչպես նաև լուսանկարել ու տեսանկարահանել քվեի գաղտնիության պահպանմամբ։ Հոդված 8(11.1)-ը պահանջում է ֆիքսված տեսախցիկներ և իրական ժամանակում հեռարձակում բոլոր տեղամասերից։',
+      'Հոդված 6(12)-ը երաշխավորում է. «Ընտրական հանձնաժողովների նիստերին, ինչպես նաև քվեարկության ամբողջ ընթացքում տեղամասային կենտրոնում… իրավունք ունեն ներկա լինելու վստահված անձինք, դիտորդները, զանգվածային լրատվության միջոցների ներկայացուցիչները… [նրանք] կարող են լուսանկարահանել, տեսանկարահանել՝ չխախտելու ընտրողների քվեարկության գաղտնիության իրավունքը»։ Հոդված 31-ը մանրամասնում է դիտորդի իրավունքները՝ ներառյալ ընտրական հանձնաժողովի նիստին և քվեարկության սենյակում ներկա լինելու իրավունքը։ Հավատարմագրված դիտորդի հեռացում, ապարատների խլում կամ սպառնալիք՝ խախտում է։',
     descriptionEn:
-      'Article 8(11) guarantees the right of proxies, observers, visitors, and media representatives to be present at commission sittings and during the voting process, and to photograph and videotape without violating ballot secrecy. Article 8(11.1) mandates fixed cameras and real-time webcast from every polling precinct.',
+      'Հոդված 6(12) guarantees: «Ընտրական հանձնաժողովների նիստերին, ինչպես նաև քվեարկության ամբողջ ընթացքում տեղամասային կենտրոնում… իրավունք ունեն ներկա լինելու վստահված անձինք, դիտորդները, զանգվածային լրատվության միջոցների ներկայացուցիչները… [նրանք] կարող են լուսանկարահանել, տեսանկարահանել՝ չխախտելու ընտրողների քվեարկության գաղտնիության իրավունքը» — proxies, observers, and media representatives have the right to be present at commission sittings and throughout voting in the polling station, and to photograph and videotape without violating ballot secrecy. Հոդված 31 details observers’ specific rights, including presence at commission sessions and inside the voting room. Removing, threatening, or confiscating equipment from accredited observers is a violation.',
     descriptionRu:
-      'Статья 8(11) гарантирует право доверенных лиц, наблюдателей, посетителей и СМИ присутствовать на заседаниях комиссии и в процессе голосования, а также фотографировать и снимать видео, не нарушая тайну голосования. Статья 8(11.1) обязывает устанавливать фиксированные камеры и вести прямую трансляцию со всех участков.',
-    ecArticle: 'Art. 8(11) · Art. 8(11.1)',
+      'Статья 6(12) гарантирует, что на заседаниях избирательных комиссий и в ходе всего голосования на участке имеют право присутствовать доверенные лица, наблюдатели, представители СМИ; они могут фотографировать и снимать видео, не нарушая тайны голосования. Статья 31 детально регулирует права наблюдателя — в том числе присутствие на заседаниях комиссии и в комнате для голосования. Удаление, угрозы или изъятие техники у аккредитованных наблюдателей — нарушение.',
+    ecArticle: 'Հոդված 6(12) · Հոդված 31',
     severity: 4,
     sortOrder: 70,
   },
@@ -135,12 +143,12 @@ export const VIOLATION_CATEGORIES = [
     labelEn: 'Campaigning on voting day (silence-period violation)',
     labelRu: 'Агитация в день голосования (нарушение «дня тишины»)',
     descriptionAm:
-      'Հոդված 19(1)-ը հստակ արգելում է. «Քվեարկության օրը և դրան նախորդող օրը հանրային ելույթներով, հանրային միջոցառումներով, ինչպես նաև տպագիր ԶԼՄ-ով, ռադիոյով և հեռուստաընկերություններով քարոզչությունն արգելվում է»։',
+      'Քվեարկության օրը և դրան նախորդող օրը հանրային ելույթներով, հանրային միջոցառումներով, ինչպես նաև տպագիր ԶԼՄ-ով, ռադիոյով և հեռուստաընկերություններով քարոզչությունն արգելվում է։ Այս կարգավորումը՝ ՀՀ Ընտրական օրենսգրքի Հոդված 18-ում (Նախընտրական քարոզչության հիմնական սկզբունքները), իսկ լրատվամիջոցների առանձնահատկությունները՝ Հոդված 19-ում (Նախընտրական քարոզչությունը զանգվածային լրատվության միջոցներով)։',
     descriptionEn:
-      'Article 19(1) explicitly prohibits: "The campaign — on the voting day and on the day preceding it — through public speeches, public events, as well as through print media, radio companies and television companies (including during satellite broadcasting) carrying out terrestrial on-air broadcasting shall be prohibited."',
+      'Campaigning — on voting day and on the day preceding it — through public speeches, public events, print media, radio, and television is prohibited. The silence-period rule sits in Հոդված 18 (Main principles of pre-election campaign); media-specific provisions are in Հոդված 19 (Pre-election campaigning through mass media).',
     descriptionRu:
-      'Статья 19(1) прямо запрещает: «Агитация в день голосования и в предшествующий ему день — через публичные выступления, публичные мероприятия, а также через печатные СМИ, радиокомпании и телекомпании, ведущие наземное эфирное вещание — запрещена».',
-    ecArticle: 'Art. 19(1)',
+      'Агитация — в день голосования и в предшествующий день — через публичные выступления, мероприятия, печатные СМИ, радио и телевидение запрещена. Это правило «дня тишины» закреплено в статье 18 (Основные принципы предвыборной агитации); специфика медиа — в статье 19 (Предвыборная агитация через СМИ).',
+    ecArticle: 'Հոդված 18',
     severity: 2,
     sortOrder: 80,
   },
@@ -150,12 +158,12 @@ export const VIOLATION_CATEGORIES = [
     labelEn: 'Ballot box tampering or seal violation',
     labelRu: 'Вмешательство в работу урны или повреждение пломбы',
     descriptionAm:
-      'Հոդված 65(2)-ի համաձայն՝ քվեարկության օրը՝ ժամը 8:00-ից առաջ, հանձնաժողովի նախագահը ստուգում է, որ քվեատուփը դատարկ է, փակում է այն և կնքում։ Հոդված 68(1)-ի համաձայն՝ ժամը 20:00-ին քվեատուփի անցքը փակվում է։ Կնքված տուփի վնասում, ապօրինի բացում, կամ անհավատարմագրված անձի շփումը քվեատուփի հետ՝ լուրջ խախտում է։',
+      'Հոդված 62-ի համաձայն՝ քվեարկության օրը՝ ժամը 7:00-ին, տեղամասային հանձնաժողովի նախագահը բացում է հրակայուն պահարանը, ստուգում, որ քվեատուփը դատարկ է, և կնքում է այն։ Հոդված 63(1). «Տեղամասային ընտրական հանձնաժողովի նախագահը քվեարկության օրը՝ ժամ 8.00-ին, հայտարարում է քվեարկության սկիզբը և թույլատրում ընտրողների մուտքը քվեարկության սենյակ»։ Հոդված 67(1). «Տեղամասային ընտրական հանձնաժողովի նախագահը ժամ 20.00-ին հայտարարում է քվեարկության ավարտի մասին և արգելում ընտրողների մուտքը քվեարկության սենյակ»։ Կնքված տուփի վնասում, ապօրինի բացում կամ անհավատարմագրված անձի շփումը՝ լուրջ խախտում է։',
     descriptionEn:
-      'Per Article 65(2), before 8:00 on voting day the precinct chairperson verifies the ballot box is empty, closes it and seals it. Per Article 68(1), at 20:00 the slot of the ballot box is closed. Damaging the sealed box, opening it illegally, or unauthorized contact with the ballot box by a non-credentialed person is a serious violation.',
+      'Per Հոդված 62, at 7:00 on voting day the precinct chairperson opens the fire-resistant safe, verifies the ballot box is empty, and seals it. Հոդված 63(1): the chairperson announces the start of voting at 8:00 and admits voters. Հոդված 67(1): «Տեղամասային ընտրական հանձնաժողովի նախագահը ժամ 20.00-ին հայտարարում է քվեարկության ավարտի մասին և արգելում ընտրողների մուտքը քվեարկության սենյակ» — at 20:00 the chairperson announces the end of voting and bars entry. Damaging the sealed box, opening it illegally, or unauthorized contact by an uncredentialed person is a serious violation.',
     descriptionRu:
-      'По статье 65(2) до 8:00 в день голосования председатель участковой комиссии проверяет, что урна пуста, закрывает её и пломбирует. По статье 68(1) в 20:00 прорезь урны закрывается. Повреждение опечатанной урны, незаконное вскрытие или несанкционированное обращение с урной — серьёзное нарушение.',
-    ecArticle: 'Art. 65(2) · Art. 68(1)',
+      'По статье 62 в 7:00 в день голосования председатель участковой комиссии открывает огнеупорный сейф, проверяет, что урна пуста, и опечатывает её. По статье 63(1) в 8:00 объявляется начало голосования и допускаются избиратели. Статья 67(1): «В 20:00 председатель участковой комиссии объявляет об окончании голосования и закрывает вход в комнату для голосования». Повреждение опечатанной урны, незаконное вскрытие или несанкционированное обращение — серьёзное нарушение.',
+    ecArticle: 'Հոդված 62 · Հոդված 67(1)',
     severity: 5,
     sortOrder: 90,
   },
@@ -165,12 +173,12 @@ export const VIOLATION_CATEGORIES = [
     labelEn: 'Vote buying',
     labelRu: 'Подкуп избирателей',
     descriptionAm:
-      'Հոդված 19(6)-ը հստակ արգելում է թեկնածուներին և կուսակցություններին (անձամբ կամ ուրիշի միջոցով, անվճար կամ արտոնյալ պայմաններով) ընտրողներին տալ (խոստանալ) գումար, սննդամթերք, արժեթղթեր, ապրանքներ կամ ծառայություններ։ Քրեական պատասխանատվությունը կարգավորվում է Քրեական օրենսգրքով։',
+      'Հոդված 18(7)-ը հստակ արգելում է. «Նախընտրական քարոզչության ժամանակ, ինչպես նաև քվեարկության նախորդ և քվեարկության օրը թեկնածուներին, կուսակցություններին, կուսակցությունների դաշինքներին արգելվում է անձամբ կամ նրանց անունից կամ որևէ այլ եղանակով ընտրողներին անհատույց կամ արտոնյալ պայմաններով տալ (խոստանալ) դրամ, սննդամթերք, արժեթղթեր, ապրանքներ կամ մատուցել (խոստանալ) ծառայություններ»։ Քրեական պատասխանատվությունը կարգավորվում է ՀՀ Քրեական օրենսգրքով։',
     descriptionEn:
-      'Article 19(6) explicitly prohibits candidates and political parties from providing or promising — in person or through someone else, gratuitously or on preferential conditions — money, food, securities, goods or services to electors. Criminal liability is governed by the Criminal Code.',
+      'Հոդված 18(7) explicitly prohibits: «Նախընտրական քարոզչության ժամանակ, ինչպես նաև քվեարկության նախորդ և քվեարկության օրը թեկնածուներին, կուսակցություններին, կուսակցությունների դաշինքներին արգելվում է… ընտրողներին անհատույց կամ արտոնյալ պայմաններով տալ (խոստանալ) դրամ, սննդամթերք, արժեթղթեր, ապրանքներ կամ մատուցել (խոստանալ) ծառայություններ» — during the pre-election campaign, and on the day preceding and the day of voting, candidates, parties, and party alliances — in person or through anyone else — are barred from giving or promising electors money, food, securities, goods, or services, gratuitously or on preferential terms. Criminal liability sits in the RA Criminal Code.',
     descriptionRu:
-      'Статья 19(6) прямо запрещает кандидатам и политическим партиям предоставлять или обещать — лично или через посредника, безвозмездно или на льготных условиях — деньги, продукты, ценные бумаги, товары или услуги избирателям. Уголовная ответственность регулируется Уголовным кодексом.',
-    ecArticle: 'Art. 19(6) · Criminal Code',
+      'Статья 18(7) прямо запрещает: в период предвыборной агитации, а также накануне и в день голосования, кандидатам, партиям и партийным блокам запрещено лично или через посредников передавать или обещать избирателям безвозмездно или на льготных условиях деньги, продукты, ценные бумаги, товары либо оказывать (обещать) услуги. Уголовная ответственность — по УК РА.',
+    ecArticle: 'Հոդված 18(7) · Քրեական օրենսգիրք',
     severity: 5,
     sortOrder: 100,
   },
@@ -180,7 +188,7 @@ export const VIOLATION_CATEGORIES = [
     labelEn: 'Other',
     labelRu: 'Другое',
     descriptionAm:
-      'Այլ խախտում, որը չի համապատասխանում վերը նշվածներին։ Մանրամասները նկարագրեք ազատ ձևով։ Մի՛ նշիր անձնական անուններ կամ քվեի բովանդակություն։',
+      'Այլ խախտում, որը չի համապատասխանում վերը նշվածներին։ Մանրամասները նկարագրեք ազատ ձևով։ Մի՛ նշեք անձնական անուններ կամ քվեի բովանդակություն։',
     descriptionEn:
       'Another violation not matching the categories above. Describe in free text. Do NOT include personal names or ballot contents.',
     descriptionRu:
