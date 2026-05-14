@@ -31,7 +31,7 @@ const CONTENT: Record<
       {
         heading: 'Աղբյուրներ',
         body:
-          'Տեղամասային տվյալները՝ ԿԸՀ-ի պաշտոնական ռեգիստրից (elections.am, 2 005 տեղամաս)։ Կենդանի հեռարձակումները, երբ ակտիվ լինեն, գալիս են ԿԸՀ-ի համակարգից (Ընտրական օրենսգրքի Հոդված 8.11.1)։',
+          'Տեղամասային տվյալները՝ ԿԸՀ-ի պաշտոնական ռեգիստրից (elections.am, 2 005 տեղամաս)։ Կենդանի հեռարձակումները, երբ ակտիվ լինեն, գալիս են ԿԸՀ-ի համակարգից (ինչպես կազմակերպվել է 2017 և 2021 թվականների ընտրությունների համար)։ Դիտորդների ու ԶԼՄ-ի՝ տեղամասում նկարահանելու իրավունքը՝ ՀՀ Ընտրական օրենսգիրք, Հոդված 6(12)։',
       },
       {
         heading: 'Փուլեր',
@@ -64,7 +64,7 @@ const CONTENT: Record<
       {
         heading: 'Sources',
         body:
-          "Station data comes from the CEC's official registry (elections.am, 2,005 stations). Live camera streams, when active, come from CEC's system (Electoral Code Article 8.11.1).",
+          "Station data comes from the CEC's official registry (elections.am, 2,005 stations). Live camera streams, when active, come from the CEC's system (as organised for the 2017 and 2021 elections). Observers' and media's right to record inside the polling station is set out in Article 6(12) of the RA Electoral Code.",
       },
       {
         heading: 'Phases',
@@ -97,7 +97,7 @@ const CONTENT: Record<
       {
         heading: 'Источники',
         body:
-          'Данные участков — из официального реестра ЦИК (elections.am, 2 005 участков). Прямые трансляции, когда активны, поступают из системы ЦИК (ст. 8.11.1 Избирательного кодекса).',
+          'Данные участков — из официального реестра ЦИК (elections.am, 2 005 участков). Прямые трансляции, когда активны, поступают из системы ЦИК (как это было организовано на выборах 2017 и 2021 годов). Право наблюдателей и СМИ на съёмку на участке закреплено в статье 6(12) Избирательного кодекса РА.',
       },
       {
         heading: 'Этапы',

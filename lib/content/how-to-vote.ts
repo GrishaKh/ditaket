@@ -21,7 +21,7 @@ export const HOW_TO_VOTE: Record<Locale, { lead: string; steps: Step[]; closing:
       },
       {
         title: 'Քվեարկիր գաղտնի',
-        body: 'Ստացիր քվեաթերթը, գնա քվեախցիկ, և նշիր քո ընտրությունը։ Քվեախցիկում միայն դու պետք է լինես։ Քվեաթերթի լուսանկարումն արգելված է (Հոդված 6)։',
+        body: 'Ստացիր քվեաթերթը, գնա քվեախցիկ, և նշիր քո ընտրությունը։ Քվեախցիկում միայն դու պետք է լինես (բացառությամբ Հոդված 65(4)-ով սահմանված օգնության դեպքերի)։ Քվեաթերթի լուսանկարումն արգելված է (Հոդված 5 և 65(7))։',
       },
       {
         title: 'Գցիր քվեատուփը',
@@ -49,7 +49,7 @@ export const HOW_TO_VOTE: Record<Locale, { lead: string; steps: Step[]; closing:
       },
       {
         title: 'Vote in secret',
-        body: 'Take the ballot, go to the booth, mark your choice. You must be alone in the booth. Photographing the ballot is prohibited (Article 6).',
+        body: 'Take the ballot, go to the booth, mark your choice. You must be alone in the booth (except for the assistance case permitted under Article 65(4)). Photographing the ballot is prohibited (Articles 5 and 65(7)).',
       },
       {
         title: 'Drop in the ballot box',
@@ -76,7 +76,7 @@ export const HOW_TO_VOTE: Record<Locale, { lead: string; steps: Step[]; closing:
       },
       {
         title: 'Голосуйте тайно',
-        body: 'Возьмите бюллетень, пройдите в кабину, отметьте свой выбор. В кабине должен быть только один человек. Фотографирование бюллетеня запрещено (статья 6).',
+        body: 'Возьмите бюллетень, пройдите в кабину, отметьте свой выбор. В кабине должен быть только один человек (кроме случая содействия по статье 65(4)). Фотографирование бюллетеня запрещено (статьи 5 и 65(7)).',
       },
       {
         title: 'Опустите в урну',
