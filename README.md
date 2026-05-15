@@ -37,8 +37,8 @@ pnpm dev                           # http://localhost:3000
 - `lib/` — DB schema, i18n, helpers
 - `messages/` — i18n strings (`am.json`, `en.json`, `ru.json`)
 - `scripts/` — CEC import, transliteration, seeding
-- `Researches/` — background research PDFs (kept for reference)
-- `fb_*.html` / `fb_*.png` — original brand creatives
+
+> Non-site assets (research PDFs, brand creatives, logo sources) live outside the repo in `../Ditaket-archive/`.
 
 ## Implementation plan
 
