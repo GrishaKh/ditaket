@@ -45,6 +45,18 @@
     "descriptionPlaceholder": "Describe what you saw. Do not include personal names or ballot contents.",
     "evidence": "Photo or short video (optional)",
     "evidenceHint": "Photos of ballots are prohibited (Electoral Code Art. 6). Do not upload them.",
+    "geo": {
+      "title": "Your location (optional)",
+      "body": "Sharing your device location helps moderators assess the report. Captured once on this page, not tracked. You can deny the prompt or clear the result.",
+      "allowButton": "Share my location",
+      "capturing": "Getting location...",
+      "capturedTemplate": "Location captured (±{accuracy} m)",
+      "clear": "Clear",
+      "tryAgain": "Try again",
+      "denied": "Location was blocked in your browser. You can submit without it.",
+      "unavailable": "Location is unavailable on this device. You can submit without it.",
+      "timeout": "Could not get a location (timed out). Try again or submit without it."
+    },
     "submit": "Submit",
     "successTitle": "Thank you",
     "successBody": "Your report has been queued for moderation. It will appear on the station page once approved.",

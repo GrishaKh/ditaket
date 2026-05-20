@@ -1,10 +1,10 @@
-import { desc, eq } from 'drizzle-orm';
-import { getDb, hasDatabase, schema } from '@/lib/db/client';
-import { VIOLATION_CATEGORIES } from '@/lib/violations/categories';
-import { ModerationRow } from './ModerationRow';
+import { desc, eq } from "drizzle-orm";
+import { getDb, hasDatabase, schema } from "@/lib/db/client";
+import { VIOLATION_CATEGORIES } from "@/lib/violations/categories";
+import { ModerationRow } from "./ModerationRow";
 
 // Always render fresh — the moderation queue must never be cached/prerendered.
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 const CATEGORY_LABEL_BY_ID = new Map<
   string,
@@ -20,6 +20,10 @@ type PendingRow = {
   locale: string;
   createdAt: Date;
   reporterFingerprint: string;
+  reporterLat: number | null;
+  reporterLng: number | null;
+  reporterAccuracyM: number | null;
+  reporterGeoCapturedAt: Date | null;
   marz: string | null;
   community: string | null;
   address: string | null;
@@ -39,6 +43,10 @@ async function loadPending(): Promise<PendingRow[]> {
         locale: schema.events.locale,
         createdAt: schema.events.createdAt,
         reporterFingerprint: schema.events.reporterFingerprint,
+        reporterLat: schema.events.reporterLat,
+        reporterLng: schema.events.reporterLng,
+        reporterAccuracyM: schema.events.reporterAccuracyM,
+        reporterGeoCapturedAt: schema.events.reporterGeoCapturedAt,
         marz: schema.stations.marz,
         community: schema.stations.community,
         address: schema.stations.address,
@@ -49,12 +57,12 @@ async function loadPending(): Promise<PendingRow[]> {
         schema.stations,
         eq(schema.events.stationId, schema.stations.id),
       )
-      .where(eq(schema.events.moderationStatus, 'pending'))
+      .where(eq(schema.events.moderationStatus, "pending"))
       .orderBy(desc(schema.events.createdAt))
       .limit(100);
   } catch (e) {
     console.warn(
-      '[ditaket] admin: pending query failed (schema not pushed?)',
+      "[ditaket] admin: pending query failed (schema not pushed?)",
       e,
     );
     return [];
@@ -86,8 +94,8 @@ export default async function AdminPage() {
             Moderation queue
           </h1>
           <p className="mt-1 text-sm text-navy-700">
-            {pending.length} pending{' '}
-            {pending.length === 1 ? 'report' : 'reports'}
+            {pending.length} pending{" "}
+            {pending.length === 1 ? "report" : "reports"}
           </p>
         </div>
         <a
@@ -100,7 +108,7 @@ export default async function AdminPage() {
 
       {pending.length === 0 ? (
         <p className="mt-12 text-navy-700">
-          No pending reports. (If the schema isn&apos;t pushed yet, run{' '}
+          No pending reports. (If the schema isn&apos;t pushed yet, run{" "}
           <code>pnpm db:push</code> locally with the prod env.)
         </p>
       ) : (
@@ -116,18 +124,23 @@ export default async function AdminPage() {
                   id: row.id,
                   stationId: row.stationId,
                   categoryId: row.categoryId,
-                  categoryLabel: cat?.labelAm ?? row.categoryId ?? '—',
-                  ecArticle: cat?.ecArticle ?? '',
+                  categoryLabel: cat?.labelAm ?? row.categoryId ?? "—",
+                  ecArticle: cat?.ecArticle ?? "",
                   severity: cat?.severity ?? 0,
                   description: row.description,
                   source: row.source,
                   locale: row.locale,
                   createdAt: row.createdAt.toISOString(),
-                  marz: row.marz ?? '',
-                  community: row.community ?? '',
-                  address: row.address ?? '',
-                  stationNumber: row.stationNumber ?? '',
+                  marz: row.marz ?? "",
+                  community: row.community ?? "",
+                  address: row.address ?? "",
+                  stationNumber: row.stationNumber ?? "",
                   reporterFingerprint: row.reporterFingerprint,
+                  reporterLat: row.reporterLat,
+                  reporterLng: row.reporterLng,
+                  reporterAccuracyM: row.reporterAccuracyM,
+                  reporterGeoCapturedAt:
+                    row.reporterGeoCapturedAt?.toISOString() ?? null,
                 }}
               />
             );

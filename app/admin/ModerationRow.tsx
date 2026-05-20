@@ -1,8 +1,8 @@
-'use client';
-import { useState } from 'react';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
-import { Badge } from '@/components/ui/Badge';
+"use client";
+import { useState } from "react";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/Badge";
 
 type Event = {
   id: string;
@@ -20,36 +20,40 @@ type Event = {
   address: string;
   stationNumber: string;
   reporterFingerprint: string;
+  reporterLat: number | null;
+  reporterLng: number | null;
+  reporterAccuracyM: number | null;
+  reporterGeoCapturedAt: string | null;
 };
 
 export function ModerationRow({ event }: { event: Event }) {
   const [status, setStatus] = useState<
-    'pending' | 'approving' | 'rejecting' | 'done' | 'error'
-  >('pending');
+    "pending" | "approving" | "rejecting" | "done" | "error"
+  >("pending");
   const [error, setError] = useState<string | null>(null);
 
-  async function act(action: 'approve' | 'reject' | 'flag') {
-    setStatus(action === 'approve' ? 'approving' : 'rejecting');
+  async function act(action: "approve" | "reject" | "flag") {
+    setStatus(action === "approve" ? "approving" : "rejecting");
     setError(null);
     try {
-      const res = await fetch('/api/admin/moderate', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
+      const res = await fetch("/api/admin/moderate", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
         body: JSON.stringify({ eventId: event.id, action }),
       });
       if (!res.ok) {
-        setStatus('error');
+        setStatus("error");
         setError(`HTTP ${res.status}`);
         return;
       }
-      setStatus('done');
+      setStatus("done");
     } catch (e) {
-      setStatus('error');
+      setStatus("error");
       setError(String(e));
     }
   }
 
-  if (status === 'done') {
+  if (status === "done") {
     return (
       <li className="opacity-50 transition-opacity">
         <Card accent="navy">
@@ -64,7 +68,7 @@ export function ModerationRow({ event }: { event: Event }) {
       <Card accent="navy" className="space-y-3">
         <div className="flex flex-wrap items-center gap-3">
           <Badge tone="navy">{event.stationId}</Badge>
-          <Badge tone={event.severity >= 4 ? 'orange' : 'navy'}>
+          <Badge tone={event.severity >= 4 ? "orange" : "navy"}>
             {event.categoryLabel}
           </Badge>
           <span className="text-xs text-navy-700">{event.ecArticle}</span>
@@ -84,40 +88,81 @@ export function ModerationRow({ event }: { event: Event }) {
             {event.description}
           </p>
         ) : (
-          <p className="text-xs italic text-navy-700/60">No description provided.</p>
+          <p className="text-xs italic text-navy-700/60">
+            No description provided.
+          </p>
         )}
+
+        {/* Reporter location — raw, for the admin to eyeball. No auto-verify. */}
+        {event.reporterLat != null && event.reporterLng != null ? (
+          <div className="rounded-lg border border-navy-900/10 bg-cream-50 p-3 text-xs text-navy-900">
+            <div className="font-semibold text-navy-700">Reporter location</div>
+            <div className="mt-1">
+              <code>
+                {event.reporterLat.toFixed(5)}, {event.reporterLng.toFixed(5)}
+              </code>
+              {event.reporterAccuracyM != null ? (
+                <span className="ml-2 text-navy-700">
+                  ±{Math.round(event.reporterAccuracyM)} m
+                </span>
+              ) : null}
+            </div>
+            <div className="mt-1 flex flex-wrap gap-3">
+              <a
+                href={`https://www.openstreetmap.org/?mlat=${event.reporterLat}&mlon=${event.reporterLng}#map=18/${event.reporterLat}/${event.reporterLng}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-navy-700 underline hover:text-orange"
+              >
+                View on OSM
+              </a>
+              <a
+                href={`https://www.google.com/maps?q=${event.reporterLat},${event.reporterLng}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-navy-700 underline hover:text-orange"
+              >
+                View on Google Maps
+              </a>
+            </div>
+          </div>
+        ) : (
+          <div className="text-xs italic text-navy-700/60">
+            Reporter location: not shared
+          </div>
+        )}
+
         <div className="text-xs text-navy-700/60">
           fingerprint: <code>{event.reporterFingerprint.slice(0, 8)}…</code> ·
-          source: <code>{event.source}</code> · locale: <code>{event.locale}</code>
+          source: <code>{event.source}</code> · locale:{" "}
+          <code>{event.locale}</code>
         </div>
         <div className="flex flex-wrap gap-2 pt-2">
           <Button
             size="sm"
-            onClick={() => act('approve')}
-            disabled={status === 'approving' || status === 'rejecting'}
+            onClick={() => act("approve")}
+            disabled={status === "approving" || status === "rejecting"}
           >
-            {status === 'approving' ? 'Approving...' : 'Approve'}
+            {status === "approving" ? "Approving..." : "Approve"}
           </Button>
           <Button
             size="sm"
             variant="secondary"
-            onClick={() => act('flag')}
-            disabled={status === 'approving' || status === 'rejecting'}
+            onClick={() => act("flag")}
+            disabled={status === "approving" || status === "rejecting"}
           >
             Flag
           </Button>
           <Button
             size="sm"
             variant="ghost"
-            onClick={() => act('reject')}
-            disabled={status === 'approving' || status === 'rejecting'}
+            onClick={() => act("reject")}
+            disabled={status === "approving" || status === "rejecting"}
           >
-            {status === 'rejecting' ? 'Rejecting...' : 'Reject'}
+            {status === "rejecting" ? "Rejecting..." : "Reject"}
           </Button>
         </div>
-        {error ? (
-          <p className="text-xs text-red-700">Error: {error}</p>
-        ) : null}
+        {error ? <p className="text-xs text-red-700">Error: {error}</p> : null}
       </Card>
     </li>
   );
