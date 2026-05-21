@@ -25,6 +25,9 @@ export async function Header({ locale }: { locale: Locale }) {
           <a href={`/${locale}/about`} className="hover:text-navy-900">
             {t('about')}
           </a>
+          <a href={`/${locale}/donate`} className="hover:text-navy-900">
+            {t('donate')}
+          </a>
         </nav>
         <LanguageSwitcher />
       </div>

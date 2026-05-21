@@ -15,10 +15,28 @@ const TAG: Record<Locale, { mission: string; accredited: string }> = {
   },
 };
 
-const LINKS: Record<Locale, { about: string; privacy: string; terms: string }> = {
-  am: { about: 'Մեր մասին', privacy: 'Գաղտնիություն', terms: 'Պայմաններ' },
-  en: { about: 'About', privacy: 'Privacy', terms: 'Terms' },
-  ru: { about: 'О нас', privacy: 'Конфиденциальность', terms: 'Условия' },
+const LINKS: Record<
+  Locale,
+  { about: string; donate: string; privacy: string; terms: string }
+> = {
+  am: {
+    about: 'Մեր մասին',
+    donate: 'Աջակցել',
+    privacy: 'Գաղտնիություն',
+    terms: 'Պայմաններ',
+  },
+  en: {
+    about: 'About',
+    donate: 'Support',
+    privacy: 'Privacy',
+    terms: 'Terms',
+  },
+  ru: {
+    about: 'О нас',
+    donate: 'Поддержать',
+    privacy: 'Конфиденциальность',
+    terms: 'Условия',
+  },
 };
 
 export function Footer({ locale }: { locale: Locale }) {
@@ -34,9 +52,12 @@ export function Footer({ locale }: { locale: Locale }) {
           <p className="mt-1 text-xs text-navy-700/70">{tag.accredited}</p>
           <p className="mt-3 text-xs">© {year}</p>
         </div>
-        <nav className="flex gap-6">
+        <nav className="flex flex-wrap gap-x-6 gap-y-2">
           <a href={`/${locale}/about`} className="hover:text-navy-900">
             {links.about}
+          </a>
+          <a href={`/${locale}/donate`} className="hover:text-navy-900">
+            {links.donate}
           </a>
           <a href={`/${locale}/legal/privacy`} className="hover:text-navy-900">
             {links.privacy}

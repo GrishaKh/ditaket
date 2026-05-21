@@ -9,7 +9,8 @@
     "report": "Report",
     "stats": "Statistics",
     "info": "Info",
-    "about": "About"
+    "about": "About",
+    "donate": "Support"
   },
   "Home": {
     "openBadge": "Reporting is open",
@@ -74,6 +75,8 @@
     "languageSwitcher": "Language",
     "unverifiedNotice": "Unverified citizen report. Partner organisations review independently.",
     "loading": "Loading...",
-    "back": "Back"
+    "back": "Back",
+    "copy": "Copy",
+    "copied": "Copied"
   }
 }
