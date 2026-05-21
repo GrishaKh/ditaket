@@ -77,6 +77,10 @@
     "loading": "Loading...",
     "back": "Back",
     "copy": "Copy",
-    "copied": "Copied"
+    "copied": "Copied",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "missionTagline": "Observer mission",
+    "accreditedTagline": "Accredited by the Central Electoral Commission"
   }
 }

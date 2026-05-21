@@ -9,7 +9,13 @@ const LABELS: Record<Locale, string> = {
   ru: 'РУС',
 };
 
-export function LanguageSwitcher({ className }: { className?: string }) {
+export function LanguageSwitcher({
+  className,
+  theme = 'light',
+}: {
+  className?: string;
+  theme?: 'light' | 'dark';
+}) {
   const locale = useLocale() as Locale;
   const pathname = usePathname();
   const router = useRouter();
@@ -19,7 +25,10 @@ export function LanguageSwitcher({ className }: { className?: string }) {
       role="group"
       aria-label="Language"
       className={cn(
-        'inline-flex items-center gap-1 rounded-full border border-navy-900/15 bg-cream-50 p-1',
+        'inline-flex items-center gap-1 rounded-full border p-1',
+        theme === 'light'
+          ? 'border-navy-900/15 bg-cream-50'
+          : 'border-cream/20 bg-cream/5',
         className,
       )}
     >
@@ -32,8 +41,12 @@ export function LanguageSwitcher({ className }: { className?: string }) {
           className={cn(
             'focus-ring rounded-full px-3 py-1 text-xs font-semibold transition-colors',
             l === locale
-              ? 'bg-navy-900 text-cream'
-              : 'text-navy-700 hover:bg-navy-900/5 hover:text-navy-900',
+              ? theme === 'light'
+                ? 'bg-navy-900 text-cream'
+                : 'bg-orange text-navy-950'
+              : theme === 'light'
+                ? 'text-navy-700 hover:bg-navy-900/5 hover:text-navy-900'
+                : 'text-cream/70 hover:bg-cream/10 hover:text-cream',
           )}
         >
           {LABELS[l]}
