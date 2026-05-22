@@ -1,152 +1,78 @@
-import { desc, eq } from "drizzle-orm";
-import { getDb, hasDatabase, schema } from "@/lib/db/client";
+import { hasDatabase } from "@/lib/db/client";
 import { VIOLATION_CATEGORIES } from "@/lib/violations/categories";
-import { ModerationRow } from "./ModerationRow";
+import {
+  loadEvents,
+  loadStatusCounts,
+  loadStats,
+  loadDistinctMarz,
+  parseFilters,
+} from "./queries";
+import { AdminShell } from "./AdminShell";
 
 // Always render fresh — the moderation queue must never be cached/prerendered.
 export const dynamic = "force-dynamic";
 
-const CATEGORY_LABEL_BY_ID = new Map<
-  string,
-  (typeof VIOLATION_CATEGORIES)[number]
->(VIOLATION_CATEGORIES.map((c) => [c.id, c]));
+const SOURCES = ["user_report", "ai_client", "moderator_note", "system"];
 
-type PendingRow = {
-  id: string;
-  stationId: string;
-  categoryId: string | null;
-  description: string;
-  source: string;
-  locale: string;
-  createdAt: Date;
-  reporterFingerprint: string;
-  reporterLat: number | null;
-  reporterLng: number | null;
-  reporterAccuracyM: number | null;
-  reporterGeoCapturedAt: Date | null;
-  marz: string | null;
-  community: string | null;
-  address: string | null;
-  stationNumber: string | null;
-};
-
-async function loadPending(): Promise<PendingRow[]> {
-  const db = getDb();
-  try {
-    return await db
-      .select({
-        id: schema.events.id,
-        stationId: schema.events.stationId,
-        categoryId: schema.events.categoryId,
-        description: schema.events.description,
-        source: schema.events.source,
-        locale: schema.events.locale,
-        createdAt: schema.events.createdAt,
-        reporterFingerprint: schema.events.reporterFingerprint,
-        reporterLat: schema.events.reporterLat,
-        reporterLng: schema.events.reporterLng,
-        reporterAccuracyM: schema.events.reporterAccuracyM,
-        reporterGeoCapturedAt: schema.events.reporterGeoCapturedAt,
-        marz: schema.stations.marz,
-        community: schema.stations.community,
-        address: schema.stations.address,
-        stationNumber: schema.stations.stationNumber,
-      })
-      .from(schema.events)
-      .leftJoin(
-        schema.stations,
-        eq(schema.events.stationId, schema.stations.id),
-      )
-      .where(eq(schema.events.moderationStatus, "pending"))
-      .orderBy(desc(schema.events.createdAt))
-      .limit(100);
-  } catch (e) {
-    console.warn(
-      "[ditaket] admin: pending query failed (schema not pushed?)",
-      e,
-    );
-    return [];
-  }
-}
-
-export default async function AdminPage() {
+export default async function AdminPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
   if (!hasDatabase) {
     return (
-      <main className="container-main py-12">
-        <h1 className="font-display text-3xl font-bold text-navy-900">
-          Moderation queue
-        </h1>
-        <p className="mt-4 rounded-lg border border-orange/40 bg-orange/5 p-4 text-navy-900">
-          Database not configured — set <code>DATABASE_URL</code> to use the
-          moderation queue.
-        </p>
+      <main className="min-h-screen bg-cream-50 px-6 py-12">
+        <div className="mx-auto max-w-2xl rounded-2xl border-2 border-orange/40 bg-orange/5 p-8">
+          <h1 className="font-display text-2xl font-bold text-navy-900">
+            Database not configured
+          </h1>
+          <p className="mt-2 text-sm text-navy-700">
+            Set <code className="rounded bg-navy-900/10 px-1.5 py-0.5 font-mono text-xs text-navy-900">DATABASE_URL</code>{" "}
+            (Vercel Postgres / Neon) to enable the moderation queue.
+          </p>
+        </div>
       </main>
     );
   }
 
-  const pending = await loadPending();
+  const params = await searchParams;
+  const filters = parseFilters(params);
+
+  let events: Awaited<ReturnType<typeof loadEvents>> = [];
+  let counts = { pending: 0, flagged: 0, approved: 0, rejected: 0, all: 0 };
+  let stats = { todayTotal: 0, todayHighSeverity: 0, past1h: 0, withGps: 0 };
+  let marzList: string[] = [];
+  let loadError: string | null = null;
+
+  try {
+    [events, counts, stats, marzList] = await Promise.all([
+      loadEvents(filters),
+      loadStatusCounts(),
+      loadStats(),
+      loadDistinctMarz(),
+    ]);
+  } catch (e) {
+    console.warn("[ditaket] admin: load failed (schema not pushed?)", e);
+    loadError =
+      "Failed to load events. If the schema isn't pushed yet, run `pnpm db:push` with the prod env.";
+  }
 
   return (
-    <main className="container-main py-12">
-      <header className="flex items-end justify-between">
-        <div>
-          <h1 className="font-display text-3xl font-bold text-navy-900">
-            Moderation queue
-          </h1>
-          <p className="mt-1 text-sm text-navy-700">
-            {pending.length} pending{" "}
-            {pending.length === 1 ? "report" : "reports"}
-          </p>
-        </div>
-        <a
-          href="/api/events"
-          className="text-sm text-navy-700 underline hover:text-orange"
-        >
-          /api/events →
-        </a>
-      </header>
-
-      {pending.length === 0 ? (
-        <p className="mt-12 text-navy-700">
-          No pending reports. (If the schema isn&apos;t pushed yet, run{" "}
-          <code>pnpm db:push</code> locally with the prod env.)
-        </p>
-      ) : (
-        <ul className="mt-8 space-y-4">
-          {pending.map((row) => {
-            const cat = row.categoryId
-              ? CATEGORY_LABEL_BY_ID.get(row.categoryId)
-              : undefined;
-            return (
-              <ModerationRow
-                key={row.id}
-                event={{
-                  id: row.id,
-                  stationId: row.stationId,
-                  categoryId: row.categoryId,
-                  categoryLabel: cat?.labelAm ?? row.categoryId ?? "—",
-                  ecArticle: cat?.ecArticle ?? "",
-                  severity: cat?.severity ?? 0,
-                  description: row.description,
-                  source: row.source,
-                  locale: row.locale,
-                  createdAt: row.createdAt.toISOString(),
-                  marz: row.marz ?? "",
-                  community: row.community ?? "",
-                  address: row.address ?? "",
-                  stationNumber: row.stationNumber ?? "",
-                  reporterFingerprint: row.reporterFingerprint,
-                  reporterLat: row.reporterLat,
-                  reporterLng: row.reporterLng,
-                  reporterAccuracyM: row.reporterAccuracyM,
-                  reporterGeoCapturedAt:
-                    row.reporterGeoCapturedAt?.toISOString() ?? null,
-                }}
-              />
-            );
-          })}
-        </ul>
-      )}
-    </main>
+    <AdminShell
+      filters={filters}
+      events={events}
+      counts={counts}
+      stats={stats}
+      marzList={marzList}
+      categories={VIOLATION_CATEGORIES.map((c) => ({
+        id: c.id,
+        label: c.labelAm,
+        labelEn: c.labelEn,
+        severity: c.severity,
+        ecArticle: c.ecArticle,
+      }))}
+      sources={SOURCES}
+      loadError={loadError}
+    />
   );
 }

@@ -65,6 +65,14 @@ const config: Config = {
           'system-ui',
           'sans-serif',
         ],
+        mono: [
+          '"JetBrains Mono"',
+          'ui-monospace',
+          'SFMono-Regular',
+          'Menlo',
+          'Consolas',
+          'monospace',
+        ],
       },
       maxWidth: {
         prose: '70ch',
