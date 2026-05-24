@@ -1,7 +1,18 @@
 import { setRequestLocale } from 'next-intl/server';
 import type { Locale } from '@/lib/i18n/routing';
 
-const CONTENT: Record<Locale, { title: string; updated: string; body: string[] }> = {
+const FACEBOOK_URL = 'https://www.facebook.com/ditaket.ditord';
+const FACEBOOK_LABEL = 'facebook.com/ditaket.ditord';
+
+const CONTENT: Record<
+  Locale,
+  {
+    title: string;
+    updated: string;
+    body: string[];
+    contact: { text: string; href: string; label: string };
+  }
+> = {
   am: {
     title: 'Գաղտնիության քաղաքականություն',
     updated: 'Թարմացված՝ 2026 թ. մայիսի 13',
@@ -12,8 +23,12 @@ const CONTENT: Record<Locale, { title: string; updated: string; body: string[] }
       'Հաղորդումներն իրականացվում են ձեռքով մոդերացիայով, մինչև հաստատվեն և հանրությանը տեսանելի լինեն տեղամասի էջում։ Բոլոր հրապարակային հաղորդումները ուղեկցվում են «չստուգված քաղաքացիական հաղորդում» նշումով։',
       'Մենք միանշանակորեն ՉԵՆՔ օգտագործում դեմքի ճանաչում, սարքերի մատնահետքավորում մարքեթինգի համար, կամ որևէ վերլուծական տրեքերներ։',
       'Հոստինգը Vercel-ում է (ԱՄՆ իրավասություն)։ Տվյալների բազան՝ Neon Postgres։ Cache-ը՝ Upstash Redis։',
-      'Որևէ հարց՝ contact@ditaket.am (հեռանկարային հասցե)։',
     ],
+    contact: {
+      text: 'Որևէ հարցով գրիր մեզ Facebook-ով՝',
+      href: FACEBOOK_URL,
+      label: FACEBOOK_LABEL,
+    },
   },
   en: {
     title: 'Privacy policy',
@@ -25,8 +40,12 @@ const CONTENT: Record<Locale, { title: string; updated: string; body: string[] }
       'Reports are manually moderated before becoming public on the station page. Every published report is labelled "unverified citizen report".',
       'We explicitly do NOT use facial recognition, marketing fingerprinting, or analytics trackers.',
       'Hosting: Vercel (US jurisdiction). Database: Neon Postgres. Cache: Upstash Redis.',
-      'Questions: contact@ditaket.am (planned address).',
     ],
+    contact: {
+      text: 'Questions? Message us on Facebook:',
+      href: FACEBOOK_URL,
+      label: FACEBOOK_LABEL,
+    },
   },
   ru: {
     title: 'Политика конфиденциальности',
@@ -38,8 +57,12 @@ const CONTENT: Record<Locale, { title: string; updated: string; body: string[] }
       'Сообщения проходят ручную модерацию перед публикацией на странице участка. Каждое опубликованное сообщение помечено как «непроверенное гражданское сообщение».',
       'Мы явно НЕ используем распознавание лиц, маркетинговую дактилоскопию или трекеры аналитики.',
       'Хостинг: Vercel (юрисдикция США). База: Neon Postgres. Кэш: Upstash Redis.',
-      'Вопросы: contact@ditaket.am (планируемый адрес).',
     ],
+    contact: {
+      text: 'По любым вопросам пишите нам в Facebook:',
+      href: FACEBOOK_URL,
+      label: FACEBOOK_LABEL,
+    },
   },
 };
 
@@ -61,6 +84,17 @@ export default async function PrivacyPage({
         {c.body.map((p, i) => (
           <p key={i}>{p}</p>
         ))}
+        <p>
+          {c.contact.text}{' '}
+          <a
+            href={c.contact.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-orange-700 underline underline-offset-2 hover:text-orange-800"
+          >
+            {c.contact.label}
+          </a>
+        </p>
       </div>
     </main>
   );

@@ -3,13 +3,20 @@ import type { Locale } from '@/lib/i18n/routing';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 
+const FACEBOOK_URL = 'https://www.facebook.com/ditaket.ditord';
+const FACEBOOK_LABEL = 'facebook.com/ditaket.ditord';
+
 const CONTENT: Record<
   Locale,
   {
     title: string;
     leadBadge: string;
     lead: string;
-    sections: { heading: string; body: string }[];
+    sections: {
+      heading: string;
+      body: string;
+      link?: { href: string; label: string };
+    }[];
   }
 > = {
   am: {
@@ -41,7 +48,8 @@ const CONTENT: Record<
       {
         heading: 'Կապ',
         body:
-          'Հաղորդումները ուղարկվում են անմիջապես մեր մոդերացիայի թիմին։ Միջազգային դիտորդական մարմինների կամ լրագրողների հետ համագործակցության համար՝ contact@ditaket.am (պլանավորված)։',
+          'Հաղորդումները ուղարկվում են անմիջապես մեր մոդերացիայի թիմին։ Միջազգային դիտորդական մարմինների, լրագրողների կամ ցանկացած այլ հարցի համար գրիր մեզ Facebook-ով՝',
+        link: { href: FACEBOOK_URL, label: FACEBOOK_LABEL },
       },
     ],
   },
@@ -74,7 +82,8 @@ const CONTENT: Record<
       {
         heading: 'Contact',
         body:
-          'Reports go directly to our moderation team. For collaboration with international observation bodies or journalists: contact@ditaket.am (planned).',
+          'Reports go directly to our moderation team. For collaboration with international observation bodies, journalists, or any other question, message us on Facebook:',
+        link: { href: FACEBOOK_URL, label: FACEBOOK_LABEL },
       },
     ],
   },
@@ -107,7 +116,8 @@ const CONTENT: Record<
       {
         heading: 'Контакт',
         body:
-          'Сообщения поступают напрямую в нашу команду модерации. Для сотрудничества с международными наблюдательными органами и журналистами: contact@ditaket.am (планируется).',
+          'Сообщения поступают напрямую в нашу команду модерации. Для сотрудничества с международными наблюдательными органами, журналистами или по любым другим вопросам пишите нам в Facebook:',
+        link: { href: FACEBOOK_URL, label: FACEBOOK_LABEL },
       },
     ],
   },
@@ -137,7 +147,22 @@ export default async function AboutPage({
             <h2 className="font-display text-xl font-bold text-navy-900">
               {s.heading}
             </h2>
-            <p className="mt-2 max-w-prose text-navy-700">{s.body}</p>
+            <p className="mt-2 max-w-prose text-navy-700">
+              {s.body}
+              {s.link && (
+                <>
+                  {' '}
+                  <a
+                    href={s.link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-orange-700 underline underline-offset-2 hover:text-orange-800"
+                  >
+                    {s.link.label}
+                  </a>
+                </>
+              )}
+            </p>
           </Card>
         ))}
       </div>

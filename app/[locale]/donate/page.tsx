@@ -21,7 +21,8 @@ const DATA = {
   account: '24103052425000',
   idram: 'TODO_IDRAM',
   easypay: 'TODO_EASYPAY',
-  contactEmail: 'contact@ditaket.am',
+  facebookUrl: 'https://www.facebook.com/ditaket.ditord',
+  facebookLabel: 'facebook.com/ditaket.ditord',
 } as const;
 
 const PURPOSE: Record<Locale, string> = {
@@ -119,7 +120,7 @@ const CONTENT: Record<Locale, Content> = {
     transparency: {
       heading: 'Թափանցիկություն և կապ',
       body:
-        '«Դիտակետ»-ը ԿԸՀ-ի կողմից հավատարմագրված դիտորդական առաքելություն է, որը գործում է Հայաստանի ընտրական օրենսգրքի շրջանակում։ Բոլոր նվիրատվություններն ուղղվում են դիտորդական գործունեության ծախսերին՝ դիտորդների ճանապարհածախսին, իրավաբանական աջակցությանը, ընտրությունների օրվա կապի ապահովմանը և կայքի սպասարկմանը։ Անդորրագրի կամ ֆինանսական հարցերի դեպքում գրիր contact@ditaket.am հասցեին։',
+        '«Դիտակետ»-ը ԿԸՀ-ի կողմից հավատարմագրված դիտորդական առաքելություն է, որը գործում է Հայաստանի ընտրական օրենսգրքի շրջանակում։ Բոլոր նվիրատվություններն ուղղվում են դիտորդական գործունեության ծախսերին՝ դիտորդների ճանապարհածախսին, իրավաբանական աջակցությանը, ընտրությունների օրվա կապի ապահովմանը և կայքի սպասարկմանը։ Անդորրագրի կամ ֆինանսական հարցերի դեպքում գրիր մեզ Facebook-ով՝',
     },
   },
   en: {
@@ -164,7 +165,7 @@ const CONTENT: Record<Locale, Content> = {
     transparency: {
       heading: 'Transparency & contact',
       body:
-        "Ditaket is an observation mission accredited by Armenia's Central Electoral Commission and operates strictly within the Armenian Electoral Code. Every donation goes to observation work — observer travel, legal support, election-day communication, and platform operations. For receipts or financial questions, write to contact@ditaket.am.",
+        "Ditaket is an observation mission accredited by Armenia's Central Electoral Commission and operates strictly within the Armenian Electoral Code. Every donation goes to observation work — observer travel, legal support, election-day communication, and platform operations. For receipts or financial questions, message us on Facebook:",
     },
   },
   ru: {
@@ -209,7 +210,7 @@ const CONTENT: Record<Locale, Content> = {
     transparency: {
       heading: 'Прозрачность и контакт',
       body:
-        '«Дитакет» — наблюдательная миссия, аккредитованная Центральной избирательной комиссией Армении; действует строго в рамках Избирательного кодекса. Все пожертвования направляются на наблюдательную работу: командировочные расходы наблюдателей, юридическую поддержку, связь в день выборов и работу платформы. Для квитанций и финансовых вопросов: contact@ditaket.am.',
+        '«Дитакет» — наблюдательная миссия, аккредитованная Центральной избирательной комиссией Армении; действует строго в рамках Избирательного кодекса. Все пожертвования направляются на наблюдательную работу: командировочные расходы наблюдателей, юридическую поддержку, связь в день выборов и работу платформы. Для квитанций и финансовых вопросов пишите нам в Facebook:',
     },
   },
 };
@@ -393,7 +394,15 @@ export default async function DonatePage({
             {c.transparency.heading}
           </h2>
           <p className="mt-2 max-w-prose text-navy-700">
-            {c.transparency.body}
+            {c.transparency.body}{' '}
+            <a
+              href={DATA.facebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-orange-700 underline underline-offset-2 hover:text-orange-800"
+            >
+              {DATA.facebookLabel}
+            </a>
           </p>
         </Card>
       </div>
