@@ -5,7 +5,7 @@ export type Step = { title: string; body: string };
 export const HOW_TO_VOTE: Record<Locale, { lead: string; steps: Step[]; closing: string }> = {
   am: {
     lead:
-      'Քվեարկության օրը (կիրակի, հունիսի 7) ընտրատեղամասերը բաց են 8:00-ից մինչև 20:00-ն։ Քվեարկում ես այն տեղամասում, որին վերագրված ես ըստ քո հաշվառման հասցեի։ Եթե 20:00-ին դեռ հերթի մեջ ես՝ քվեարկելու իրավունք ունես (Հոդված 54)։ Ստացիոնար բուժման մեջ գտնվող, տեղամաս ինքնուրույն ներկայանալ չկարողացող ընտրողների համար գործում է շրջիկ քվեատուփ (Հոդված 54(2))։ Արտերկրում դիվանագիտական կամ զինվորական ծառայության մեջ գտնվող քաղաքացիները քվեարկում են էլեկտրոնային եղանակով՝ քվեարկության օրվանից մի քանի օր առաջ (Հոդված 60)։',
+      'Քվեարկության օրը (կիրակի, հունիսի 7) ընտրատեղամասերը բաց են 8:00-ից մինչև 20:00-ն։ Քվեարկում ես այն տեղամասում, որին վերագրված ես ըստ քո հաշվառման հասցեի. եթե 20:00-ին դեռ հերթի մեջ ես՝ քվեարկելու իրավունք ունես (Հոդված 54)։ Այս ընտրությունները կայանում են փակ ցուցակային համամասնական ընտրակարգով. ընտրողը ստանում է կուսակցությունների նախապես տպված քվեաթերթիկները և ընտրում է իր նախընտրած կուսակցության թերթիկը՝ առանց որևէ նշում կատարելու, գրիչ պետք չէ (ԿԸՀ որոշում, 10.05.2021)։ Ստացիոնար բուժման մեջ գտնվող, տեղամաս ինքնուրույն ներկայանալ չկարողացող ընտրողների համար գործում է շրջիկ քվեատուփ (Հոդված 54(2))։ Արտերկրում դիվանագիտական կամ զինվորական ծառայության մեջ գտնվող քաղաքացիները քվեարկում են էլեկտրոնային եղանակով՝ քվեարկության օրվանից մի քանի օր առաջ (Հոդված 60)։',
     steps: [
       {
         title: 'Բեր անձը հաստատող փաստաթուղթ',
@@ -23,19 +23,19 @@ export const HOW_TO_VOTE: Record<Locale, { lead: string; steps: Step[]; closing:
           'Ցույց տուր փաստաթուղթդ գրանցման համար պատասխանատու հանձնաժողովի անդամին։ Նա կստուգի ինքնությունդ (հնարավոր է՝ մատնահետքի սկանավորմամբ նույնականացման սարքի վրա), կգտնի անունդ ընտրողների ցուցակում և կլրացնի փաստաթղթի տվյալները։ Դու ստորագրում ես անվանդ դիմաց, իսկ անդամը քո ստորագրության դիմաց դնում է իր անհատական կնիքը (Հոդված 64(2))։ Եթե ինքնուրույն չես կարող ստորագրել՝ կարող ես խնդրել այլ քաղաքացու (բայց ոչ հանձնաժողովի անդամի) քո անունից ստորագրել։',
       },
       {
-        title: 'Ստացիր քվեաթերթիկն ու ծրարը',
+        title: 'Ստացիր քվեաթերթիկները և ծրարը',
         body:
-          'Քվեաթերթիկներ տրամադրող անդամն անջատում է քվեաթերթիկի ելունդը և քեզ է հանձնում թերթիկի ներքևի հատվածը՝ քվեարկության ծրարի հետ մեկտեղ։ Երկուսն էլ տանում ես քվեախցիկ (Հոդված 65(1)–(2))։',
+          'Քվեաթերթիկներ տրամադրող անդամը քեզ է հանձնում նախապես տպված քվեաթերթիկների մի փաթեթ՝ մեկ թերթիկ յուրաքանչյուր մասնակից կուսակցության կամ դաշինքի համար (2026-ին՝ 19 հատ), ինչպես նաև մեկ քվեարկության ծրար։ Բոլորը տանում ես քվեախցիկ (Հոդված 65)։',
       },
       {
-        title: 'Քվեարկիր գաղտնի՝ խցիկում',
+        title: 'Ընտրիր թերթիկդ՝ խցիկում, գաղտնի',
         body:
-          'Խցիկում գտնվող գրիչով նշիր ընտրությունդ քվեաթերթիկում։ Քվեախցիկում պետք է լինես միայն դու՝ բացառությամբ ինքնուրույն լրացնելու հնարավորություն չունեցող ընտրողի օգնության դեպքի։ Այդ դեպքում ընտրողը նախ տեղեկացնում է հանձնաժողովի նախագահին և հրավիրում մեկ այլ անձի, որը չպետք է լինի հանձնաժողովի անդամ կամ վստահված անձ. այդ անձն իրավունք ունի օգնելու միայն մեկ ընտրողի (Հոդված 65(4))։ Քվեաթերթիկի լուսանկարահանումը խախտում է քվեարկության գաղտնիությունը (Հոդված 5 և 65(7))։ Եթե սխալ ես լրացրել կամ վնասել քվեաթերթիկը՝ նոր թերթիկ ստանալու համար դիմիր նախագահին (Հոդված 65(5))։',
+          'Քվեախցիկում ընտրիր քո նախընտրած կուսակցության կամ դաշինքի նախապես տպված քվեաթերթիկը և տեղավորիր այն քվեարկության ծրարի մեջ։ Որևէ նշում կամ ստորագրություն կատարել պետք չէ՝ հենց թերթիկի ընտրությունն է քո ձայնը։ Չօգտագործված թերթիկները գցիր խցիկում տեղադրված աղբամանը։ Քվեախցիկում պետք է լինես միայն դու՝ բացառությամբ ինքնուրույն կողմնորոշվել չկարողացող ընտրողի օգնության դեպքի։ Այդ դեպքում ընտրողը նախ տեղեկացնում է հանձնաժողովի նախագահին և հրավիրում մեկ այլ անձի, որը չպետք է լինի հանձնաժողովի անդամ կամ վստահված անձ. այդ անձն իրավունք ունի օգնելու միայն մեկ ընտրողի (Հոդված 65(4))։ Քո ընտրած քվեաթերթիկի լուսանկարահանումը խախտում է քվեարկության գաղտնիությունը (Հոդված 5 և 65(7))։',
       },
       {
         title: 'Կնքիր ծրարը, գցիր քվեատուփը',
         body:
-          'Ծալիր քվեաթերթիկը՝ տեղավորելով քվեարկության ծրարում, ապա մոտեցիր քվեատուփին։ Ծրարը կնքելու համար պատասխանատու անդամն ստուգում է, որ փաստաթղթիդ վրա բացակայում է այս ընտրությանը մասնակցելու դրոշմակնիքը, դրոշմակնքում է փաստաթուղթդ (դրոշմակնիքը մնում է տեսանելի առնվազն 12 ժամ, ապա անհետանում է), կնքում է քվեարկության ծրարը տեղամասային հանձնաժողովի կնիքով, և դու գցում ես ծրարը քվեատուփը (Հոդված 66)։',
+          'Մոտեցիր քվեատուփին։ Ծրարը կնքելու համար պատասխանատու անդամն ստուգում է, որ փաստաթղթիդ վրա բացակայում է այս ընտրությանը մասնակցելու դրոշմակնիքը, դրոշմակնքում է փաստաթուղթդ (դրոշմակնիքը մնում է տեսանելի առնվազն 12 ժամ, ապա անհետանում է), կնքում է քվեարկության ծրարը տեղամասային հանձնաժողովի կնիքով, և դու գցում ես ծրարը քվեատուփը (Հոդված 66)։',
       },
     ],
     closing:
@@ -43,7 +43,7 @@ export const HOW_TO_VOTE: Record<Locale, { lead: string; steps: Step[]; closing:
   },
   en: {
     lead:
-      'On election day (Sunday, June 7), polling stations are open from 8:00 to 20:00. You vote at the station assigned to your registered address. If you are still in line at 20:00, you keep the right to vote (Article 54). Voters in inpatient hospital care who cannot reach a station vote via a mobile ballot box at the hospital (Article 54(2)). Citizens in diplomatic or military service abroad vote electronically a few days before election day (Article 60).',
+      'On election day (Sunday, June 7), polling stations are open from 8:00 to 20:00. You vote at the station assigned to your registered address; if you are still in line at 20:00, you keep the right to vote (Article 54). These elections use closed-list proportional representation: you receive a set of pre-printed party ballots and select the one for your preferred party — no marking, no pen needed (CEC decision of 10 May 2021). Voters in inpatient hospital care who cannot reach a station vote via a mobile ballot box at the hospital (Article 54(2)). Citizens in diplomatic or military service abroad vote electronically a few days before election day (Article 60).',
     steps: [
       {
         title: 'Bring valid ID',
@@ -61,19 +61,19 @@ export const HOW_TO_VOTE: Record<Locale, { lead: string; steps: Step[]; closing:
           'Show your document to the registration member. They verify your identity (this may include scanning a fingerprint on the authentication device), find your name on the voter list, and write in your document details. You sign next to your name, and the member places a personal seal next to your signature (Article 64(2)). If you cannot sign yourself, another citizen — but not a commission member — may sign on your behalf.',
       },
       {
-        title: 'Take your ballot and envelope',
+        title: 'Take your ballots and envelope',
         body:
-          'The ballot-issuing member tears off the ballot stub and hands you the bottom of the ballot together with one voting envelope. You take both to the booth (Article 65(1)–(2)).',
+          'The ballot-issuing member hands you a stack of pre-printed ballots — one per participating party or alliance (19 in 2026) — together with one voting envelope. You take them all to the booth (Article 65).',
       },
       {
-        title: 'Vote in secret in the booth',
+        title: 'Choose your ballot in secret',
         body:
-          'Mark your choice on the ballot with the pen provided in the booth. Only you may be inside the booth, except for one assistance case: a voter who cannot fill out the ballot themselves may, after informing the chairperson, invite one other person — not a commission member or proxy — who may assist only that one voter (Article 65(4)). Photographing the ballot violates voting secrecy (Articles 5 and 65(7)). If you spoil a ballot, ask the chairperson for a replacement (Article 65(5)).',
+          'In the booth, select the pre-printed ballot of the party or alliance you support and place it in the envelope. You do not mark or sign anything — choosing the ballot is itself your vote. Drop the unused ballots in the bin provided inside the booth. Only you may be in the booth, except for one assistance case: a voter who cannot manage the ballots alone may, after informing the chairperson, invite one other person — not a commission member or proxy — who may assist only that one voter (Article 65(4)). Photographing the ballot you chose violates voting secrecy (Articles 5 and 65(7)).',
       },
       {
         title: 'Seal the envelope, drop it in the box',
         body:
-          "Fold the ballot inside the voting envelope, then approach the ballot box. The envelope-sealing member checks your ID for the 'voted' stamp; if absent, they stamp your document (the stamp remains visible for at least 12 hours, then fades), seal the envelope with the precinct commission's stamp, and you drop the envelope in the box (Article 66).",
+          "Approach the ballot box. The envelope-sealing member checks your ID for the 'voted' stamp; if absent, they stamp your document (the stamp remains visible for at least 12 hours, then fades), seal the envelope with the precinct commission's stamp, and you drop the envelope in the box (Article 66).",
       },
     ],
     closing:
@@ -81,7 +81,7 @@ export const HOW_TO_VOTE: Record<Locale, { lead: string; steps: Step[]; closing:
   },
   ru: {
     lead:
-      'В день выборов (воскресенье, 7 июня) избирательные участки открыты с 8:00 до 20:00. Голосуете на участке, к которому приписаны по адресу регистрации. Если в 20:00 вы ещё стоите в очереди — вы сохраняете право проголосовать (статья 54). Избиратели на стационарном лечении, не способные прийти на участок, голосуют через выездную урну в медучреждении (статья 54(2)). Граждане, находящиеся на дипломатической или военной службе за рубежом, голосуют электронно за несколько дней до дня выборов (статья 60).',
+      'В день выборов (воскресенье, 7 июня) избирательные участки открыты с 8:00 до 20:00. Голосуете на участке, к которому приписаны по адресу регистрации; если в 20:00 вы ещё стоите в очереди — вы сохраняете право проголосовать (статья 54). Эти выборы проходят по пропорциональной системе с закрытыми списками: вы получаете набор заранее отпечатанных бюллетеней партий и выбираете бюллетень предпочитаемой партии — никаких отметок, ручка не нужна (решение ЦИК от 10 мая 2021 г.). Избиратели на стационарном лечении, не способные прийти на участок, голосуют через выездную урну в медучреждении (статья 54(2)). Граждане, находящиеся на дипломатической или военной службе за рубежом, голосуют электронно за несколько дней до дня выборов (статья 60).',
     steps: [
       {
         title: 'Возьмите документ, удостоверяющий личность',
@@ -99,19 +99,19 @@ export const HOW_TO_VOTE: Record<Locale, { lead: string; steps: Step[]; closing:
           'Покажите документ члену комиссии, ответственному за регистрацию. Он проверит вашу личность (возможно, со сканированием отпечатка пальца на устройстве аутентификации), найдёт вас в списке избирателей и впишет реквизиты документа. Вы расписываетесь напротив имени, а член комиссии ставит свою индивидуальную печать рядом с подписью (статья 64(2)). Если вы не можете расписаться сами, за вас может расписаться другой гражданин — но не член комиссии.',
       },
       {
-        title: 'Получите бюллетень и конверт',
+        title: 'Получите бюллетени и конверт',
         body:
-          'Член комиссии, ответственный за выдачу бюллетеней, отрывает корешок и передаёт вам нижнюю часть бюллетеня вместе с одним конвертом для голосования. Оба берёте с собой в кабину (статья 65(1)–(2)).',
+          'Член комиссии, выдающий бюллетени, вручает вам пачку заранее отпечатанных бюллетеней — по одному на каждую участвующую партию или альянс (в 2026 году — 19 штук), и один конверт для голосования. Всё это берёте с собой в кабину (статья 65).',
       },
       {
-        title: 'Голосуйте тайно в кабине',
+        title: 'Выберите бюллетень тайно',
         body:
-          'Отметьте свой выбор в бюллетене ручкой, которая лежит в кабине. В кабине должны быть только вы — кроме одного случая помощи: избиратель, не способный заполнить бюллетень самостоятельно, после уведомления председателя может пригласить одно другое лицо (не члена комиссии и не доверенное лицо), которое имеет право помочь только одному избирателю (статья 65(4)). Фотографирование бюллетеня нарушает тайну голосования (статьи 5 и 65(7)). Если вы испортили бюллетень — обратитесь к председателю за новым (статья 65(5)).',
+          'В кабине выберите заранее отпечатанный бюллетень партии или альянса, которому отдаёте голос, и положите его в конверт. Никаких отметок и подписей делать не нужно — сам выбор бюллетеня и есть ваш голос. Неиспользованные бюллетени опустите в урну для отходов внутри кабины. В кабине должны быть только вы — кроме случая помощи: избиратель, не способный справиться с бюллетенями самостоятельно, после уведомления председателя может пригласить одно другое лицо (не члена комиссии и не доверенное лицо), которое имеет право помочь только одному избирателю (статья 65(4)). Фотографирование выбранного бюллетеня нарушает тайну голосования (статьи 5 и 65(7)).',
       },
       {
         title: 'Запечатайте конверт, опустите в урну',
         body:
-          'Сложите бюллетень и положите в конверт для голосования, затем подойдите к урне. Член комиссии, ответственный за запечатывание конверта, проверяет отсутствие штампа об участии в этих выборах на вашем документе, ставит этот штамп (он остаётся видимым как минимум 12 часов, затем исчезает), запечатывает конверт печатью участковой комиссии — и вы опускаете конверт в урну (статья 66).',
+          'Подойдите к урне. Член комиссии, ответственный за запечатывание конверта, проверяет отсутствие штампа об участии в этих выборах на вашем документе, ставит этот штамп (он остаётся видимым как минимум 12 часов, затем исчезает), запечатывает конверт печатью участковой комиссии — и вы опускаете конверт в урну (статья 66).',
       },
     ],
     closing:
