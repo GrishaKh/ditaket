@@ -6,12 +6,13 @@
  * Source: CEC registry — Մարզ / Համայնք / Բնակավայր / ԸԸՀ / ՏԸՀ / Հասցե
  *   https://www.elections.am/File/SubDistrictsToExcel?electionId=28826
  */
-import { and, eq, ilike, or, sql, asc, isNotNull } from 'drizzle-orm';
+import { and, eq, ilike, or, sql, asc } from 'drizzle-orm';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { getDb, hasDatabase, schema } from './db/client';
 import { armToLatin, armToCyrillic } from '../scripts/transliterate';
 import type { Locale } from './i18n/routing';
+import stationCoords from '@/data/station-coords.json';
 
 export type StationView = {
   id: string;
@@ -47,6 +48,22 @@ function normCec(c: string): string {
   return a && b ? `${Number(a)}/${Number(b)}` : c;
 }
 
+// Polling-station coordinates harvested from the CEC Register, committed to the
+// repo (data/station-coords.json) and bundled into the build. They are the
+// source of truth for lat/lng and are overlaid onto station rows from either the
+// DB or the dev fixture — so the map works after a deploy with no separate DB
+// import step. As more coordinates are harvested, commit the file and redeploy.
+const COORD_BY_CEC: Map<string, { lat: number; lng: number }> = (() => {
+  const m = new Map<string, { lat: number; lng: number }>();
+  const store = stationCoords as Record<string, { lat: number; lng: number }>;
+  for (const [key, v] of Object.entries(store)) {
+    if (typeof v?.lat === 'number' && typeof v?.lng === 'number') {
+      m.set(normCec(key), { lat: v.lat, lng: v.lng });
+    }
+  }
+  return m;
+})();
+
 async function loadDevFixture(): Promise<StationView[]> {
   if (devCache) return devCache;
   const path = resolve(process.cwd(), 'data/stations.dev.json');
@@ -62,25 +79,10 @@ async function loadDevFixture(): Promise<StationView[]> {
     accessibility?: boolean;
   }>;
 
-  // Harvested coordinates, keyed by precinct ("1/1"). Optional file — when it
-  // is absent or a precinct is missing, lat/lng stay null.
-  const coordsPath = resolve(process.cwd(), 'data/station-coords.json');
-  const coordsRaw = await readFile(coordsPath, 'utf-8').catch(() => '{}');
-  const coordsStore = JSON.parse(coordsRaw) as Record<
-    string,
-    { lat: number; lng: number }
-  >;
-  const coordByCec = new Map<string, { lat: number; lng: number }>();
-  for (const [key, v] of Object.entries(coordsStore)) {
-    if (typeof v?.lat === 'number' && typeof v?.lng === 'number') {
-      coordByCec.set(normCec(key), { lat: v.lat, lng: v.lng });
-    }
-  }
-
   devCache = rows.map((s) => {
     const id = urlSafeId(s.cecCode);
     const district = s.district ?? s.cecCode.split('/')[0] ?? '';
-    const coord = coordByCec.get(normCec(s.cecCode)) ?? null;
+    const coord = COORD_BY_CEC.get(normCec(s.cecCode)) ?? null;
     return {
       id,
       cecCode: s.cecCode,
@@ -381,11 +383,14 @@ export async function listGeolocatedStations(
       .map(toGeo)
       .filter((x): x is GeoStation => x !== null);
   }
+  // Coordinates are overlaid from the committed file in rowToView (the DB's
+  // lat/lng may be null), so we fetch all rows and filter after the overlay.
   const rows = await getDb().query.stations.findMany({
-    where: and(isNotNull(schema.stations.lat), isNotNull(schema.stations.lng)),
     orderBy: [asc(schema.stations.cecCode)],
   });
-  return rows.map((row) => toGeo(rowToView(row))).filter((x): x is GeoStation => x !== null);
+  return rows
+    .map((row) => toGeo(rowToView(row)))
+    .filter((x): x is GeoStation => x !== null);
 }
 
 /** Total station count (for map coverage display). */
@@ -398,6 +403,9 @@ export async function countStations(): Promise<number> {
 }
 
 function rowToView(row: typeof schema.stations.$inferSelect): StationView {
+  // Coordinates come from the committed file (source of truth); fall back to any
+  // value stored on the row.
+  const coord = COORD_BY_CEC.get(normCec(row.cecCode)) ?? null;
   return {
     id: row.id,
     cecCode: row.cecCode,
@@ -408,8 +416,8 @@ function rowToView(row: typeof schema.stations.$inferSelect): StationView {
     stationNumber: row.stationNumber,
     address: row.address,
     accessibility: row.accessibility,
-    lat: row.lat,
-    lng: row.lng,
+    lat: coord?.lat ?? row.lat,
+    lng: coord?.lng ?? row.lng,
     marzEn: row.marzEn ?? '',
     marzRu: row.marzRu ?? '',
     communityEn: row.communityEn ?? '',
