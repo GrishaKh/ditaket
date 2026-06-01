@@ -1486,7 +1486,7 @@
     "community": "Արաբկիր",
     "settlement": null,
     "stationNumber": "37",
-    "address": "Հասարակական տարածք Ա.Խաչատրյան 20",
+    "address": "Վ․ Փափազյան 27",
     "accessibility": false
   },
   {
@@ -4566,7 +4566,7 @@
     "community": "Էրեբունի",
     "settlement": null,
     "stationNumber": "36",
-    "address": "«Երևանի հ.45 հիմնական դպրոց» ՊՈԱԿ, Սոֆիայի փող. /Նոր \r\nԱրեշի 26-րդ փող./ հ.45",
+    "address": "«Երևանի Ն․ Գոգոլի անվան հ.35 հիմնական դպրոց» ՊՈԱԿ, Էրեբունու փող․ հ․ 16",
     "accessibility": false
   },
   {
@@ -4576,7 +4576,7 @@
     "community": "Էրեբունի",
     "settlement": null,
     "stationNumber": "37",
-    "address": "«Երևանի հ.45 հիմնական դպրոց» ՊՈԱԿ, Սոֆիայի փող. /Նոր \r\nԱրեշի 26-րդ փող./ հ.45",
+    "address": "«Երևանի Ն․ Գոգոլի անվան հ.35 հիմնական դպրոց» ՊՈԱԿ, Էրեբունու փող․ հ․ 16",
     "accessibility": false
   },
   {
@@ -5964,7 +5964,7 @@
     "district": "13",
     "marz": "Արարատ",
     "community": "Վեդի",
-    "settlement": "Արալեզ",
+    "settlement": "Արալեզ գյուղ",
     "stationNumber": "14",
     "address": "Արալեզի մշակույթի տուն, Ե․Չարենցի փող․8",
     "accessibility": false
@@ -6094,7 +6094,7 @@
     "district": "13",
     "marz": "Արարատ",
     "community": "Վեդի",
-    "settlement": "Այգավան",
+    "settlement": "Այգավան գյուղ",
     "stationNumber": "27",
     "address": "Այգավանի մշակույթի տուն, Շ․Ազնավուրի փող․1",
     "accessibility": false
@@ -6104,7 +6104,7 @@
     "district": "13",
     "marz": "Արարատ",
     "community": "Վեդի",
-    "settlement": "Այգավան",
+    "settlement": "Այգավան գյուղ",
     "stationNumber": "28",
     "address": "Այգավանի միջն․ դպրոց,  Ս․Հովհաննիսյան փող․43",
     "accessibility": false
@@ -6334,7 +6334,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "1",
     "address": "Թիվ 8 հիմնական դպրոց, Զվարթնոց, Մանուշյան 2/3",
     "accessibility": false
@@ -6344,7 +6344,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "2",
     "address": "Թիվ 10 ավագ դպրոց, Զվարթնոց, Տեր-Գաբրիելյան 20",
     "accessibility": false
@@ -6354,7 +6354,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "3",
     "address": "Թիվ 12 հիմնական դպրոց, Արագածի զանգված 18",
     "accessibility": false
@@ -6364,7 +6364,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "4",
     "address": "Մանկավարժահոգեբանական աջակցման կենտրոն, Զվարթնոց, Այգեստան 20",
     "accessibility": false
@@ -6374,7 +6374,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "5",
     "address": "Թիվ 7 «Զվարթնոց» մանկապարտեզ, Արագածի զանգված 20",
     "accessibility": false
@@ -6384,7 +6384,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "6",
     "address": "Թիվ 7 հիմնական դպրոց, Վ.Սարգսյան 7/7",
     "accessibility": false
@@ -6394,7 +6394,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "7",
     "address": "Թիվ 4 հիմնական դպրոց, Տիգրան Մեծի 29/1",
     "accessibility": false
@@ -6404,7 +6404,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "8",
     "address": "Թիվ 2 ավագ դպրոց, Սբ. Մաշտոցի 75/2",
     "accessibility": false
@@ -6414,7 +6414,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "9",
     "address": "Թիվ 3 «Ծիծեռնակ»  մսուր-մանկապարտեզ, Բաղրամյան 18/3",
     "accessibility": false
@@ -6424,7 +6424,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "10",
     "address": "Վ․Համազասպյանի անվան պետական քոլեջ, Սբ․ Մ.Խորենացի 1/2",
     "accessibility": false
@@ -6434,7 +6434,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "11",
     "address": "Ե.Թադևոսյանի անվան գեղարվեստի դպրոց, Սբ. Մաշտոցի 0",
     "accessibility": false
@@ -6444,7 +6444,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "12",
     "address": "Թիվ 1 երաժշտական դպրոց, Կոմիտասի հրապարակ",
     "accessibility": false
@@ -6454,7 +6454,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "13",
     "address": "Մշակույթի պալատ, Սբ. Մ.Մաշտոց 75",
     "accessibility": false
@@ -6464,7 +6464,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "14",
     "address": "Թիվ 2 «Շուշան» մանկապարտեզ, Վազգեն Առաջին 68/1",
     "accessibility": false
@@ -6474,7 +6474,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "15",
     "address": "Թիվ 4 «Ձնծաղիկ» մսուր-մանկապարտեզ, Լեոնիդ Ազգալդյան  7",
     "accessibility": false
@@ -6484,7 +6484,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "16",
     "address": "Մանկապատանեկան մարզադպրոց, Սբ․Գրիգոր Լուսավորչի 9/1",
     "accessibility": false
@@ -6494,7 +6494,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "17",
     "address": "Թիվ 9 հիմնական դպրոց, Դավիթ Անհաղթի  27/1",
     "accessibility": false
@@ -6504,7 +6504,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "18",
     "address": "Հովհաննես Հովհաննիսյանի տուն-թանգարան, Սբ. Մ.Խորենացի 2/41",
     "accessibility": false
@@ -6514,7 +6514,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "19",
     "address": "Թիվ 6 հիմնական դպրոց, Սբ. Մ.Խորենացի 101",
     "accessibility": false
@@ -6524,7 +6524,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "20",
     "address": "Թիվ 3 հիմնական դպրոց, Սբ. Մ.Խորենացի 7",
     "accessibility": false
@@ -6534,7 +6534,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "21",
     "address": "«Մանկապատանեկան մարզադպրոց» ՀՈԱԿ-ի մասնաճյուղ, Վ․Տերյան 971/7",
     "accessibility": false
@@ -6544,7 +6544,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "22",
     "address": "Թիվ 5 «Գարուն» մանկապարտեզ,  Չարենց 8/1",
     "accessibility": false
@@ -6554,7 +6554,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "23",
     "address": "Թիվ 1 «Հասմիկ» մանկապարտեզ, Պատկանյան 37/2",
     "accessibility": false
@@ -6564,7 +6564,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Ոսկեհատ",
+    "settlement": "Ոսկեհատ գյուղ",
     "stationNumber": "24",
     "address": "Մշակույթի տուն, Մաշտոց 43",
     "accessibility": false
@@ -6574,7 +6574,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Ոսկեհատ",
+    "settlement": "Ոսկեհատ գյուղ",
     "stationNumber": "25",
     "address": "Միջնակարգ դպրոց, Մաշտոց 1/4",
     "accessibility": false
@@ -6974,7 +6974,7 @@
     "district": "14",
     "marz": "Արմավիր",
     "community": "Վաղարշապատ",
-    "settlement": "Էջմիածին",
+    "settlement": "Էջմիածին քաղաք",
     "stationNumber": "65",
     "address": "«Արմավիր» ՔԿՀ, Մոնթե Մելքոնյան փ.(Չոբանքարա), Էջմիածնի խճուղի 23",
     "accessibility": false
@@ -10206,7 +10206,7 @@
     "community": "Ճամբարակ",
     "settlement": "Շողակաթ գյուղ",
     "stationNumber": "40",
-    "address": "Շողակաթի մշակույթի տուն 10-րդ փողոց, շենք 1, տարածք 35",
+    "address": "Շողակաթի միջնակարգ դպրոց փողոց 10, շենք 1/1",
     "accessibility": false
   },
   {
@@ -19356,7 +19356,7 @@
     "community": "Նոյեմբերյան",
     "settlement": "Ոսկեպար գյուղ",
     "stationNumber": "25",
-    "address": "Մշակույթի տուն, փողոց 3, շենք 33",
+    "address": "Գորգագործության սրահ, 4-րդ փողոց, շենք 1",
     "accessibility": false
   },
   {

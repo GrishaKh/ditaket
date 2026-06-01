@@ -1,0 +1,222 @@
+[
+  {
+    "cecCode": "1/1",
+    "district": "1",
+    "marz": "Երևան",
+    "community": "Ավան",
+    "settlement": null,
+    "stationNumber": "1",
+    "address": "Թիվ 51 մ/մանկապարտեզ Ավան, 6 փ. 52/1",
+    "accessibility": false
+  },
+  {
+    "cecCode": "7/3",
+    "district": "7",
+    "marz": "Երևան",
+    "community": "Մալաթիա-Սեբաստիա",
+    "settlement": null,
+    "stationNumber": "3",
+    "address": "Թիվ 78 մանկապարտեզ, Բաբաջանյան 139",
+    "accessibility": false
+  },
+  {
+    "cecCode": "11/1",
+    "district": "11",
+    "marz": "Արարատ",
+    "community": "Մասիս",
+    "settlement": "Մասիս քաղաք",
+    "stationNumber": "1",
+    "address": "Մանկապատանեկան ստեղծագործական կենտրոն ՀՈԱԿ, Դպրոցականների 1-ին նրբ. 27/13",
+    "accessibility": false
+  },
+  {
+    "cecCode": "12/34",
+    "district": "12",
+    "marz": "Արարատ",
+    "community": "Արտաշատ",
+    "settlement": "Դիտակ գյուղ",
+    "stationNumber": "34",
+    "address": "Դիտակի միջն. դպրոց, Ն. Սարգսյան 2",
+    "accessibility": false
+  },
+  {
+    "cecCode": "14/1",
+    "district": "14",
+    "marz": "Արմավիր",
+    "community": "Վաղարշապատ",
+    "settlement": "Էջմիածին",
+    "stationNumber": "1",
+    "address": "Թիվ 8 հիմնական դպրոց, Զվարթնոց, Մանուշյան 2/3",
+    "accessibility": false
+  },
+  {
+    "cecCode": "15/20",
+    "district": "15",
+    "marz": "Արմավիր",
+    "community": "Մեծամոր",
+    "settlement": "Արեվիկ գյուղ",
+    "stationNumber": "20",
+    "address": "Մշակույթի տուն,Գոռ Կիրակոսյան  փողոց  4 շենք",
+    "accessibility": false
+  },
+  {
+    "cecCode": "17/1",
+    "district": "17",
+    "marz": "Արագածոտն",
+    "community": "Աշտարակ",
+    "settlement": "Աշտարակ քաղաք",
+    "stationNumber": "1",
+    "address": "Աշտարակի Ն. Աշտարակեցու անվան թիվ 1 հիմն. դպրոց, Պռոշյան փողոց, շենք 14",
+    "accessibility": false
+  },
+  {
+    "cecCode": "17/72",
+    "district": "17",
+    "marz": "Արագածոտն",
+    "community": "Ծաղկահովիտ",
+    "settlement": "Վարդաբլուր գյուղ",
+    "stationNumber": "72",
+    "address": "Վարդաբլուրի Խ. Աբովյանի անվ. միջնակարգ դպրոց, 2-րդ փողոց, շենք 2",
+    "accessibility": false
+  },
+  {
+    "cecCode": "19/1",
+    "district": "19",
+    "marz": "Գեղարքունիք",
+    "community": "Գավառ",
+    "settlement": "Ծովազարդ գյուղ",
+    "stationNumber": "1",
+    "address": "Միջնակարգ դպրոց, Զորավար Անդրանիկի 42/1",
+    "accessibility": false
+  },
+  {
+    "cecCode": "20/40",
+    "district": "20",
+    "marz": "Գեղարքունիք",
+    "community": "Ճամբարակ",
+    "settlement": "Շողակաթ գյուղ",
+    "stationNumber": "40",
+    "address": "Շողակաթի մշակույթի տուն 10-րդ փողոց, շենք 1, տարածք 35",
+    "accessibility": false
+  },
+  {
+    "cecCode": "22/1",
+    "district": "22",
+    "marz": "Լոռի",
+    "community": "Սպիտակ",
+    "settlement": "Խնկոյան գյուղ",
+    "stationNumber": "1",
+    "address": "Խնկոանի հիմնական դպրոց, 1-ին փողոց, շենք 21",
+    "accessibility": false
+  },
+  {
+    "cecCode": "24/4",
+    "district": "24",
+    "marz": "Լոռի",
+    "community": "Ալավերդի",
+    "settlement": "Ծաթեր գյուղ",
+    "stationNumber": "4",
+    "address": "Ծաթերի հիմնական դպրոց, փողոց 7, շենք 10",
+    "accessibility": false
+  },
+  {
+    "cecCode": "26/1",
+    "district": "26",
+    "marz": "Կոտայք",
+    "community": "Ծաղկաձոր",
+    "settlement": "Ծաղկաձոր քաղաք",
+    "stationNumber": "1",
+    "address": "հասցե՝ ք.Ծաղկաձոր, Մայիսյան փողոց 15, Ծաղկաձորի միջնակարգ դպրոցի շենք",
+    "accessibility": false
+  },
+  {
+    "cecCode": "28/6",
+    "district": "28",
+    "marz": "Կոտայք",
+    "community": "Նոր Հաճըն",
+    "settlement": "Արգել գյուղ",
+    "stationNumber": "6",
+    "address": "Մշակույթի տուն, 14 փողոց 20",
+    "accessibility": false
+  },
+  {
+    "cecCode": "30/1",
+    "district": "30",
+    "marz": "Շիրակ",
+    "community": "Աշոցք",
+    "settlement": "Սարագյուղ գյուղ",
+    "stationNumber": "1",
+    "address": "«Սարագյուղի հիմնական դպրոց» ՊՈԱԿ 2 փ․ 24 շենք",
+    "accessibility": false
+  },
+  {
+    "cecCode": "31/48",
+    "district": "31",
+    "marz": "Շիրակ",
+    "community": "Գյումրի",
+    "settlement": null,
+    "stationNumber": "48",
+    "address": "Թիվ 5 հիմնական դպրոց Մատնիշյան 301",
+    "accessibility": false
+  },
+  {
+    "cecCode": "34/1",
+    "district": "34",
+    "marz": "Սյունիք",
+    "community": "Գորիս",
+    "settlement": "Գորիս քաղաք",
+    "stationNumber": "1",
+    "address": "Գորիսի N 2 հիմնական դպրոցի շենք,  ք. Գորիս, Քրիստափորի փող., շ. 34",
+    "accessibility": false
+  },
+  {
+    "cecCode": "35/1",
+    "district": "35",
+    "marz": "Սյունիք",
+    "community": "Կապան",
+    "settlement": "Կապան քաղաք",
+    "stationNumber": "1",
+    "address": "«Կապանի թիվ 4 ՆՈՒՀ ՀՈԱԿ                   Շահումյան փողոց, շենք 42",
+    "accessibility": false
+  },
+  {
+    "cecCode": "36/1",
+    "district": "36",
+    "marz": "Վայոց ձոր",
+    "community": "Եղեգնաձոր",
+    "settlement": "Եղեգնաձոր քաղաք",
+    "stationNumber": "1",
+    "address": "Մշակույթի տուն, ք.Եղեգնաձոր, Մոմիկի փ., շ.1",
+    "accessibility": false
+  },
+  {
+    "cecCode": "36/27",
+    "district": "36",
+    "marz": "Վայոց ձոր",
+    "community": "Եղեգիս",
+    "settlement": "Շատին գյուղ",
+    "stationNumber": "27",
+    "address": "Միջնակարգ դպրոց, գ.Շատին, փ.2, շ.17",
+    "accessibility": false
+  },
+  {
+    "cecCode": "37/1",
+    "district": "37",
+    "marz": "Տավուշ",
+    "community": "Նոյեմբերյան",
+    "settlement": "Նոյեմբերյան քաղաք",
+    "stationNumber": "1",
+    "address": "Մշակույթի կենտրոն, Երևանյան 3",
+    "accessibility": false
+  },
+  {
+    "cecCode": "38/9",
+    "district": "38",
+    "marz": "Տավուշ",
+    "community": "Դիլիջան",
+    "settlement": "Դիլիջան քաղաք",
+    "stationNumber": "9",
+    "address": "Շահումյան 6 «Թիվ 4 հիմնական դպրոց» ՊՈԱԿ",
+    "accessibility": false
+  }
+]

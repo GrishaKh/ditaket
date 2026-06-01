@@ -41,3 +41,16 @@ next-env.d.ts
 
 # Test coverage
 coverage/
+
+# Local archive of CEC open voter lists (~140MB) — keep out of git
+data/voter-lists-2026/
+
+# Investigation artefacts — contain voter PII (sample voter lists, lookup
+# responses). Never commit.
+.firecrawl/
+
+# External tool state (symlink into ~/.gemini)
+.antigravitycli/
+
+# Scratch buffer used while harvesting coordinates (overwritten per page)
+data/_coord-batch.json
