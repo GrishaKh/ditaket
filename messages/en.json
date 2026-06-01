@@ -35,7 +35,8 @@
     "noEvents": "No reports yet",
     "marz": "Region",
     "community": "Community",
-    "stationNumber": "Station number"
+    "stationNumber": "Station number",
+    "openInMaps": "Open in Maps"
   },
   "Report": {
     "title": "Report a violation",

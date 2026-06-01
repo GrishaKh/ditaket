@@ -35,7 +35,8 @@
     "noEvents": "Առայժմ հաղորդումներ չկան",
     "marz": "Մարզ",
     "community": "Համայնք",
-    "stationNumber": "Տեղամասի համար"
+    "stationNumber": "Տեղամասի համար",
+    "openInMaps": "Բացել քարտեզում"
   },
   "Report": {
     "title": "Հաղորդել խախտում",

@@ -35,7 +35,8 @@
     "noEvents": "Сообщений пока нет",
     "marz": "Регион (марз)",
     "community": "Община",
-    "stationNumber": "Номер участка"
+    "stationNumber": "Номер участка",
+    "openInMaps": "Открыть на карте"
   },
   "Report": {
     "title": "Сообщить о нарушении",
