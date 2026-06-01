@@ -10,7 +10,8 @@
     "stats": "Statistics",
     "info": "Info",
     "about": "About",
-    "donate": "Support"
+    "donate": "Support",
+    "map": "Map"
   },
   "Home": {
     "openBadge": "Reporting is open",
@@ -37,6 +38,11 @@
     "community": "Community",
     "stationNumber": "Station number",
     "openInMaps": "Open in Maps"
+  },
+  "Map": {
+    "title": "Polling-station map",
+    "coverage": "{mapped} / {total} stations mapped",
+    "empty": "Coordinates are not available yet"
   },
   "Report": {
     "title": "Report a violation",
