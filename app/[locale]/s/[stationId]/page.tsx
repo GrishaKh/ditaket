@@ -10,6 +10,7 @@ import {
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { MapLink } from '@/components/MapLink';
 
 export default async function StationPage({
   params,
@@ -61,6 +62,16 @@ export default async function StationPage({
             {t('address')}:{' '}
             <span className="text-navy-900">{station.address}</span>
           </p>
+          {station.lat != null && station.lng != null ? (
+            <div className="mt-4">
+              <MapLink
+                lat={station.lat}
+                lng={station.lng}
+                label={t('openInMaps')}
+                variant="button"
+              />
+            </div>
+          ) : null}
           {station.accessibility ? (
             <p className="mt-2 inline-flex items-center gap-2 rounded-full bg-orange/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-orange-700">
               {t('accessibility')}
