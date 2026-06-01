@@ -7,6 +7,7 @@ import {
   localizedCommunity,
 } from '@/lib/stations';
 import { Card } from '@/components/ui/Card';
+import { MapLink } from '@/components/MapLink';
 
 export default async function CommunityPage({
   params,
@@ -75,6 +76,16 @@ export default async function CommunityPage({
                         </div>
                       </Card>
                     </a>
+                    {s.lat != null && s.lng != null ? (
+                      <div className="mt-1.5 px-1">
+                        <MapLink
+                          lat={s.lat}
+                          lng={s.lng}
+                          label={t('openInMaps')}
+                          variant="inline"
+                        />
+                      </div>
+                    ) : null}
                   </li>
                 ))}
               </ul>

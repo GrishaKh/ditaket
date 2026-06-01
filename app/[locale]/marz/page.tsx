@@ -3,6 +3,7 @@ import type { Locale } from '@/lib/i18n/routing';
 import { listMarzes, searchStations, localizedMarz } from '@/lib/stations';
 import { Pill } from '@/components/ui/Pill';
 import { Card } from '@/components/ui/Card';
+import { MapLink } from '@/components/MapLink';
 
 export default async function MarzListPage({
   params,
@@ -56,6 +57,16 @@ export default async function MarzListPage({
                     <div className="mt-1 text-sm text-navy-700">{s.address}</div>
                   </Card>
                 </a>
+                {s.lat != null && s.lng != null ? (
+                  <div className="mt-1.5 px-1">
+                    <MapLink
+                      lat={s.lat}
+                      lng={s.lng}
+                      label={tStation('openInMaps')}
+                      variant="inline"
+                    />
+                  </div>
+                ) : null}
               </li>
             ))}
           </ul>
