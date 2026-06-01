@@ -5,13 +5,15 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { mapsUrl } from '@/lib/maps';
 import type { GeoStation } from '@/lib/stations';
+import type { Locale } from '@/lib/i18n/routing';
 
-// Leaflet's default marker images don't resolve through bundlers; pin them to
-// the CDN so markers render reliably.
+// Leaflet's default marker images don't resolve through bundlers. Serve them
+// from our own /public (vendored from the leaflet package) so markers never
+// depend on a third-party CDN being reachable on election day.
 const icon = L.icon({
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  iconUrl: '/leaflet/marker-icon.png',
+  iconRetinaUrl: '/leaflet/marker-icon-2x.png',
+  shadowUrl: '/leaflet/marker-shadow.png',
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
@@ -24,7 +26,7 @@ export default function StationsMap({
   directionsLabel,
 }: {
   stations: GeoStation[];
-  locale: string;
+  locale: Locale;
   directionsLabel: string;
 }) {
   return (
@@ -42,23 +44,21 @@ export default function StationsMap({
         <Marker key={s.id} position={[s.lat, s.lng]} icon={icon}>
           <Popup>
             <div className="text-sm">
-              <div className="font-semibold">
+              <a
+                href={`/${locale}/s/${s.id}`}
+                className="font-semibold underline"
+              >
                 {s.label}, №{s.stationNumber}
-              </div>
+              </a>
               <div className="text-xs opacity-70">{s.cecCode}</div>
-              <div className="mt-1 flex gap-3">
-                <a href={`/${locale}/s/${s.id}`} className="underline">
-                  {s.cecCode}
-                </a>
-                <a
-                  href={mapsUrl(s.lat, s.lng)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline"
-                >
-                  📍 {directionsLabel}
-                </a>
-              </div>
+              <a
+                href={mapsUrl(s.lat, s.lng)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 inline-block underline"
+              >
+                📍 {directionsLabel}
+              </a>
             </div>
           </Popup>
         </Marker>

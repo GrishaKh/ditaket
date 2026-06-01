@@ -34,16 +34,20 @@ async function main() {
   console.log(`[import-coords] ${entries.length} coordinates`);
 
   let updated = 0;
+  let notFound = 0;
   for (const c of entries) {
     const id = urlSafeId(c.precinct);
     const res = await db
       .update(schema.stations)
       .set({ lat: c.lat, lng: c.lng, updatedAt: sql`now()` })
       .where(eq(schema.stations.id, id));
-    updated += 1;
-    void res;
+    if ((res.rowCount ?? 0) > 0) updated += 1;
+    else notFound += 1;
   }
-  console.log(`[import-coords] updated ${updated} stations`);
+  console.log(
+    `[import-coords] updated ${updated} stations` +
+      (notFound ? ` (${notFound} precincts had no matching station row)` : ''),
+  );
 }
 
 main().catch((e) => {

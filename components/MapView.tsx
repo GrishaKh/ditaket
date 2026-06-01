@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import type { GeoStation } from '@/lib/stations';
+import type { Locale } from '@/lib/i18n/routing';
 
 const StationsMap = dynamic(() => import('./StationsMap'), {
   ssr: false,
@@ -14,7 +15,7 @@ const StationsMap = dynamic(() => import('./StationsMap'), {
 
 export function MapView(props: {
   stations: GeoStation[];
-  locale: string;
+  locale: Locale;
   directionsLabel: string;
 }) {
   return <StationsMap {...props} />;
