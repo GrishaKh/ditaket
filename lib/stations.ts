@@ -6,7 +6,7 @@
  * Source: CEC registry — Մարզ / Համայնք / Բնակավայր / ԸԸՀ / ՏԸՀ / Հասցե
  *   https://www.elections.am/File/SubDistrictsToExcel?electionId=28826
  */
-import { and, eq, ilike, or, sql, asc } from 'drizzle-orm';
+import { and, eq, ilike, or, sql, asc, isNotNull } from 'drizzle-orm';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { getDb, hasDatabase, schema } from './db/client';
@@ -23,6 +23,8 @@ export type StationView = {
   stationNumber: string;
   address: string;
   accessibility: boolean;
+  lat: number | null;
+  lng: number | null;
   marzEn: string;
   marzRu: string;
   communityEn: string;
@@ -40,6 +42,11 @@ function urlSafeId(cecCode: string): string {
   return `${a.padStart(2, '0')}-${b.padStart(3, '0')}`;
 }
 
+function normCec(c: string): string {
+  const [a, b] = c.split('/');
+  return a && b ? `${Number(a)}/${Number(b)}` : c;
+}
+
 async function loadDevFixture(): Promise<StationView[]> {
   if (devCache) return devCache;
   const path = resolve(process.cwd(), 'data/stations.dev.json');
@@ -54,9 +61,26 @@ async function loadDevFixture(): Promise<StationView[]> {
     address: string;
     accessibility?: boolean;
   }>;
+
+  // Harvested coordinates, keyed by precinct ("1/1"). Optional file — when it
+  // is absent or a precinct is missing, lat/lng stay null.
+  const coordsPath = resolve(process.cwd(), 'data/station-coords.json');
+  const coordsRaw = await readFile(coordsPath, 'utf-8').catch(() => '{}');
+  const coordsStore = JSON.parse(coordsRaw) as Record<
+    string,
+    { lat: number; lng: number }
+  >;
+  const coordByCec = new Map<string, { lat: number; lng: number }>();
+  for (const [key, v] of Object.entries(coordsStore)) {
+    if (typeof v?.lat === 'number' && typeof v?.lng === 'number') {
+      coordByCec.set(normCec(key), { lat: v.lat, lng: v.lng });
+    }
+  }
+
   devCache = rows.map((s) => {
     const id = urlSafeId(s.cecCode);
     const district = s.district ?? s.cecCode.split('/')[0] ?? '';
+    const coord = coordByCec.get(normCec(s.cecCode)) ?? null;
     return {
       id,
       cecCode: s.cecCode,
@@ -67,6 +91,8 @@ async function loadDevFixture(): Promise<StationView[]> {
       stationNumber: s.stationNumber,
       address: s.address,
       accessibility: Boolean(s.accessibility),
+      lat: coord?.lat ?? null,
+      lng: coord?.lng ?? null,
       marzEn: armToLatin(s.marz),
       marzRu: armToCyrillic(s.marz),
       communityEn: armToLatin(s.community),
@@ -322,6 +348,55 @@ export async function searchStations(q: string): Promise<StationView[]> {
   return rows.map(rowToView);
 }
 
+export type GeoStation = {
+  id: string;
+  cecCode: string;
+  lat: number;
+  lng: number;
+  label: string;
+  stationNumber: string;
+};
+
+/** Stations that have coordinates, with a locale-resolved label, for the map. */
+export async function listGeolocatedStations(
+  locale: Locale,
+): Promise<GeoStation[]> {
+  const toGeo = (s: StationView): GeoStation | null => {
+    if (s.lat == null || s.lng == null) return null;
+    const label = localizedSettlement(s, locale) ?? localizedCommunity(s, locale);
+    return {
+      id: s.id,
+      cecCode: s.cecCode,
+      lat: s.lat,
+      lng: s.lng,
+      label,
+      stationNumber: s.stationNumber,
+    };
+  };
+  if (!hasDatabase) {
+    const all = await loadDevFixture();
+    return all
+      .filter((s) => s.lat != null && s.lng != null)
+      .sort((a, b) => a.cecCode.localeCompare(b.cecCode, 'hy'))
+      .map(toGeo)
+      .filter((x): x is GeoStation => x !== null);
+  }
+  const rows = await getDb().query.stations.findMany({
+    where: and(isNotNull(schema.stations.lat), isNotNull(schema.stations.lng)),
+    orderBy: [asc(schema.stations.cecCode)],
+  });
+  return rows.map((row) => toGeo(rowToView(row))).filter((x): x is GeoStation => x !== null);
+}
+
+/** Total station count (for map coverage display). */
+export async function countStations(): Promise<number> {
+  if (!hasDatabase) return (await loadDevFixture()).length;
+  const [row] = await getDb()
+    .select({ count: sql<number>`count(*)::int` })
+    .from(schema.stations);
+  return row?.count ?? 0;
+}
+
 function rowToView(row: typeof schema.stations.$inferSelect): StationView {
   return {
     id: row.id,
@@ -333,6 +408,8 @@ function rowToView(row: typeof schema.stations.$inferSelect): StationView {
     stationNumber: row.stationNumber,
     address: row.address,
     accessibility: row.accessibility,
+    lat: row.lat,
+    lng: row.lng,
     marzEn: row.marzEn ?? '',
     marzRu: row.marzRu ?? '',
     communityEn: row.communityEn ?? '',
