@@ -3,6 +3,11 @@ import type { Locale } from '@/lib/i18n/routing';
 import { listGeolocatedStations, countStations } from '@/lib/stations';
 import { MapView } from '@/components/MapView';
 
+// Coordinates are loaded into the DB out-of-band (`pnpm import:coords`) and grow
+// as harvesting continues. Render at request time so the map reflects the
+// current data instead of freezing the counts/pins at build time.
+export const dynamic = 'force-dynamic';
+
 export default async function MapPage({
   params,
 }: {
