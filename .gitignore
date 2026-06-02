@@ -57,3 +57,6 @@ data/_coord-batch.json
 
 # Raw AccessibilityMap API dump (regenerate via scripts/fetch-station-coords.mjs)
 data/_accessmap/
+
+# Raw PEC-members API dump (regenerate via scripts/fetch-pec-members.mjs)
+data/_commission/
