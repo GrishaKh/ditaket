@@ -8,18 +8,21 @@ import type { GeoStation } from '@/lib/stations';
 import type { CommissionChair } from '@/lib/commission';
 import type { Locale } from '@/lib/i18n/routing';
 
-// Leaflet's default marker images don't resolve through bundlers. Serve them
-// from our own /public (vendored from the leaflet package) so markers never
-// depend on a third-party CDN being reachable on election day.
-const icon = L.icon({
-  iconUrl: '/leaflet/marker-icon.png',
-  iconRetinaUrl: '/leaflet/marker-icon-2x.png',
-  shadowUrl: '/leaflet/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-});
+// Color pins by coordinate accuracy via lightweight CSS divIcons (no image
+// assets, so they never depend on a CDN): green = verified, amber = approximate.
+function makeDot(color: string) {
+  return L.divIcon({
+    className: '',
+    html: `<span style="display:block;width:14px;height:14px;border-radius:9999px;background:${color};border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.35)"></span>`,
+    iconSize: [14, 14],
+    iconAnchor: [7, 7],
+    popupAnchor: [0, -7],
+  });
+}
+const ICONS: Record<'verified' | 'approximate', L.DivIcon> = {
+  verified: makeDot('#2e7d32'),
+  approximate: makeDot('#e0a800'),
+};
 
 type MapStation = GeoStation & { chair: CommissionChair | null };
 
@@ -46,7 +49,7 @@ export default function StationsMap({
         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {stations.map((s) => (
-        <Marker key={s.id} position={[s.lat, s.lng]} icon={icon}>
+        <Marker key={s.id} position={[s.lat, s.lng]} icon={ICONS[s.coordAccuracy]}>
           <Popup>
             <div className="text-sm">
               <a

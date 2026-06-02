@@ -35,6 +35,26 @@ export default async function MapPage({
       <p className="mt-2 text-navy-700">
         {t('coverage', { mapped: stations.length, total })}
       </p>
+      <div className="mt-3 flex flex-wrap gap-4 text-sm text-navy-700">
+        <span className="inline-flex items-center gap-2">
+          <span
+            aria-hidden="true"
+            style={{ background: '#2e7d32' }}
+            className="inline-block h-3 w-3 rounded-full ring-2 ring-white"
+          />
+          {t('accVerified')} ·{' '}
+          {mapStations.filter((s) => s.coordAccuracy === 'verified').length}
+        </span>
+        <span className="inline-flex items-center gap-2">
+          <span
+            aria-hidden="true"
+            style={{ background: '#e0a800' }}
+            className="inline-block h-3 w-3 rounded-full ring-2 ring-white"
+          />
+          {t('accApprox')} ·{' '}
+          {mapStations.filter((s) => s.coordAccuracy === 'approximate').length}
+        </span>
+      </div>
 
       <div className="mt-8">
         {mapStations.length > 0 ? (
