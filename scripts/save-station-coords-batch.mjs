@@ -6,7 +6,10 @@
  *   node scripts/save-station-coords-batch.mjs <rows.json> [source]
  *
  * rows.json: [{ precinct, lat, lng, comment }]
- * Merges into data/station-coords.json + rewrites data/station-coords.csv.
+ * Merges into data/station-coords.verified.json (the VERIFIED set — these are
+ * authoritative Register coords, distinct from the approximate AccessibilityMap
+ * bulk in data/station-coords.json which fetch-station-coords.mjs owns) and
+ * rewrites data/station-coords.verified.csv.
  * Only precinct -> coordinate is persisted; NO voter PII is stored.
  */
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
@@ -21,8 +24,8 @@ const norm = (c) => { const [d, n] = String(c).split(/[/-]/); return `${+d}/${+n
 const stations = JSON.parse(readFileSync("data/stations.dev.json", "utf8"));
 const sMap = new Map(stations.map((s) => [norm(s.cecCode), s]));
 
-const JSON_PATH = "data/station-coords.json";
-const CSV_PATH = "data/station-coords.csv";
+const JSON_PATH = "data/station-coords.verified.json";
+const CSV_PATH = "data/station-coords.verified.csv";
 const store = existsSync(JSON_PATH) ? JSON.parse(readFileSync(JSON_PATH, "utf8")) : {};
 
 const rows = JSON.parse(readFileSync(rowsPath, "utf8"));

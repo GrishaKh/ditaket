@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 /**
  * Upsert one polling-station coordinate (harvested from the CEC Register's
- * ShowOnMap(lat,lng,...) result) into the growing coordinate dataset.
+ * ShowOnMap(lat,lng,...) result) into the VERIFIED coordinate dataset.
+ * (Register coords are authoritative; the approximate AccessibilityMap bulk
+ * lives in data/station-coords.json and is owned by fetch-station-coords.mjs.)
  *
- *   data/station-coords.json  — keyed store (source of truth)
- *   data/station-coords.csv   — flat mirror (Excel-friendly, UTF-8 BOM)
+ *   data/station-coords.verified.json  — keyed store (source of truth)
+ *   data/station-coords.verified.csv   — flat mirror (Excel-friendly, UTF-8 BOM)
  *
  * Usage:
  *   node scripts/save-station-coord.mjs <precinct> <lat> <lng> ["station comment"]
@@ -31,8 +33,8 @@ if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
   process.exit(2);
 }
 
-const JSON_PATH = "data/station-coords.json";
-const CSV_PATH = "data/station-coords.csv";
+const JSON_PATH = "data/station-coords.verified.json";
+const CSV_PATH = "data/station-coords.verified.csv";
 
 // cross-check against the registry address for context
 const stations = JSON.parse(readFileSync("data/stations.dev.json", "utf8"));
