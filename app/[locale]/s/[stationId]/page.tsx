@@ -11,6 +11,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { MapLink } from '@/components/MapLink';
+import { CommissionSection } from '@/components/CommissionSection';
 
 export default async function StationPage({
   params,
@@ -101,6 +102,8 @@ export default async function StationPage({
           {tCommon('unverifiedNotice')}
         </p>
       </section>
+
+      <CommissionSection cecCode={station.cecCode} locale={locale} />
     </main>
   );
 }
