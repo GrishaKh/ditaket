@@ -43,7 +43,7 @@ function urlSafeId(cecCode: string): string {
   return `${a.padStart(2, '0')}-${b.padStart(3, '0')}`;
 }
 
-function normCec(c: string): string {
+export function normCec(c: string): string {
   const [a, b] = c.split('/');
   return a && b ? `${Number(a)}/${Number(b)}` : c;
 }
