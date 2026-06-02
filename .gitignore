@@ -54,3 +54,6 @@ data/voter-lists-2026/
 
 # Scratch buffer used while harvesting coordinates (overwritten per page)
 data/_coord-batch.json
+
+# Raw AccessibilityMap API dump (regenerate via scripts/fetch-station-coords.mjs)
+data/_accessmap/
