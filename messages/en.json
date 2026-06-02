@@ -44,6 +44,15 @@
     "coverage": "{mapped} / {total} stations mapped",
     "empty": "Coordinates are not available yet"
   },
+  "Commission": {
+    "title": "Commission",
+    "composition": "8 members — 2 each nominated by ՔՊԿ, ՀԱՅԱՍՏԱՆ, ՊԱՏԻՎ ՈՒՆԵՄ and the TEC",
+    "roleChair": "Chair",
+    "roleSecretary": "Secretary",
+    "roleMember": "Member",
+    "certificate": "Certificate №",
+    "chairLabel": "Chair"
+  },
   "Report": {
     "title": "Report a violation",
     "subtitle": "Anonymous report for {stationId}.",

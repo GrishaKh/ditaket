@@ -44,6 +44,15 @@
     "coverage": "{mapped} / {total} տեղամաս քարտեզի վրա",
     "empty": "Կոորդինատները դեռ հասանելի չեն"
   },
+  "Commission": {
+    "title": "ԸԸՀ կազմ",
+    "composition": "8 անդամ — 2-ական ՔՊԿ, ՀԱՅԱՍՏԱՆ, ՊԱՏԻՎ ՈՒՆԵՄ և ԸԸՀ-ի կողմից",
+    "roleChair": "նախագահ",
+    "roleSecretary": "քարտուղար",
+    "roleMember": "անդամ",
+    "certificate": "Վկայական",
+    "chairLabel": "Նախագահ"
+  },
   "Report": {
     "title": "Հաղորդել խախտում",
     "subtitle": "Անանուն հաղորդում տեղամասի համար՝ {stationId}։",

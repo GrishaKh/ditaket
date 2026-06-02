@@ -44,6 +44,15 @@
     "coverage": "{mapped} / {total} участков на карте",
     "empty": "Координаты пока недоступны"
   },
+  "Commission": {
+    "title": "Состав комиссии",
+    "composition": "8 членов — по 2 от ՔՊԿ, ՀԱՅԱՍՏԱՆ, ՊԱՏԻՎ ՈՒՆԵՄ и ТИК",
+    "roleChair": "председатель",
+    "roleSecretary": "секретарь",
+    "roleMember": "член",
+    "certificate": "Свидетельство №",
+    "chairLabel": "Председатель"
+  },
   "Report": {
     "title": "Сообщить о нарушении",
     "subtitle": "Анонимное сообщение для {stationId}.",
