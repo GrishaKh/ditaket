@@ -13,6 +13,7 @@ import { getDb, hasDatabase, schema } from './db/client';
 import { armToLatin, armToCyrillic } from '../scripts/transliterate';
 import type { Locale } from './i18n/routing';
 import stationCoords from '@/data/station-coords.json';
+import stationCoordsVerified from '@/data/station-coords.verified.json';
 
 export type StationView = {
   id: string;
@@ -26,6 +27,7 @@ export type StationView = {
   accessibility: boolean;
   lat: number | null;
   lng: number | null;
+  coordAccuracy: 'verified' | 'approximate' | null;
   marzEn: string;
   marzRu: string;
   communityEn: string;
@@ -48,21 +50,36 @@ export function normCec(c: string): string {
   return a && b ? `${Number(a)}/${Number(b)}` : c;
 }
 
-// Polling-station coordinates harvested from the CEC Register, committed to the
-// repo (data/station-coords.json) and bundled into the build. They are the
-// source of truth for lat/lng and are overlaid onto station rows from either the
-// DB or the dev fixture — so the map works after a deploy with no separate DB
-// import step. As more coordinates are harvested, commit the file and redeploy.
-const COORD_BY_CEC: Map<string, { lat: number; lng: number }> = (() => {
+export type CoordAccuracy = 'verified' | 'approximate';
+
+// Coordinates come from two committed, bundled files: the verified set (our CEC
+// Register extractions) takes precedence over the approximate AccessibilityMap
+// bulk. Each station thus resolves coords + an accuracy tag, overlaid onto rows
+// from the DB or the dev fixture.
+function buildCoordMap(store: unknown): Map<string, { lat: number; lng: number }> {
   const m = new Map<string, { lat: number; lng: number }>();
-  const store = stationCoords as Record<string, { lat: number; lng: number }>;
-  for (const [key, v] of Object.entries(store)) {
+  for (const [key, v] of Object.entries(
+    store as Record<string, { lat: number; lng: number }>,
+  )) {
     if (typeof v?.lat === 'number' && typeof v?.lng === 'number') {
       m.set(normCec(key), { lat: v.lat, lng: v.lng });
     }
   }
   return m;
-})();
+}
+const VERIFIED_BY_CEC = buildCoordMap(stationCoordsVerified);
+const APPROX_BY_CEC = buildCoordMap(stationCoords);
+
+function resolveCoord(
+  cecCode: string,
+): { lat: number; lng: number; accuracy: CoordAccuracy } | null {
+  const k = normCec(cecCode);
+  const v = VERIFIED_BY_CEC.get(k);
+  if (v) return { ...v, accuracy: 'verified' };
+  const a = APPROX_BY_CEC.get(k);
+  if (a) return { ...a, accuracy: 'approximate' };
+  return null;
+}
 
 async function loadDevFixture(): Promise<StationView[]> {
   if (devCache) return devCache;
@@ -82,7 +99,7 @@ async function loadDevFixture(): Promise<StationView[]> {
   devCache = rows.map((s) => {
     const id = urlSafeId(s.cecCode);
     const district = s.district ?? s.cecCode.split('/')[0] ?? '';
-    const coord = COORD_BY_CEC.get(normCec(s.cecCode)) ?? null;
+    const coord = resolveCoord(s.cecCode);
     return {
       id,
       cecCode: s.cecCode,
@@ -95,6 +112,7 @@ async function loadDevFixture(): Promise<StationView[]> {
       accessibility: Boolean(s.accessibility),
       lat: coord?.lat ?? null,
       lng: coord?.lng ?? null,
+      coordAccuracy: coord?.accuracy ?? null,
       marzEn: armToLatin(s.marz),
       marzRu: armToCyrillic(s.marz),
       communityEn: armToLatin(s.community),
@@ -357,6 +375,7 @@ export type GeoStation = {
   lng: number;
   label: string;
   stationNumber: string;
+  coordAccuracy: CoordAccuracy;
 };
 
 /** Stations that have coordinates, with a locale-resolved label, for the map. */
@@ -373,6 +392,7 @@ export async function listGeolocatedStations(
       lng: s.lng,
       label,
       stationNumber: s.stationNumber,
+      coordAccuracy: s.coordAccuracy ?? 'approximate',
     };
   };
   if (!hasDatabase) {
@@ -403,9 +423,9 @@ export async function countStations(): Promise<number> {
 }
 
 function rowToView(row: typeof schema.stations.$inferSelect): StationView {
-  // Coordinates come from the committed file (source of truth); fall back to any
-  // value stored on the row.
-  const coord = COORD_BY_CEC.get(normCec(row.cecCode)) ?? null;
+  // Coordinates come from the committed files (verified over approximate); fall
+  // back to any value stored on the row.
+  const coord = resolveCoord(row.cecCode);
   return {
     id: row.id,
     cecCode: row.cecCode,
@@ -418,6 +438,8 @@ function rowToView(row: typeof schema.stations.$inferSelect): StationView {
     accessibility: row.accessibility,
     lat: coord?.lat ?? row.lat,
     lng: coord?.lng ?? row.lng,
+    coordAccuracy:
+      coord?.accuracy ?? (row.lat != null && row.lng != null ? 'approximate' : null),
     marzEn: row.marzEn ?? '',
     marzRu: row.marzRu ?? '',
     communityEn: row.communityEn ?? '',
