@@ -5,6 +5,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { mapsUrl } from '@/lib/maps';
 import type { GeoStation } from '@/lib/stations';
+import type { CommissionChair } from '@/lib/commission';
 import type { Locale } from '@/lib/i18n/routing';
 
 // Leaflet's default marker images don't resolve through bundlers. Serve them
@@ -20,14 +21,18 @@ const icon = L.icon({
   shadowSize: [41, 41],
 });
 
+type MapStation = GeoStation & { chair: CommissionChair | null };
+
 export default function StationsMap({
   stations,
   locale,
   directionsLabel,
+  chairLabel,
 }: {
-  stations: GeoStation[];
+  stations: MapStation[];
   locale: Locale;
   directionsLabel: string;
+  chairLabel: string;
 }) {
   return (
     <MapContainer
@@ -51,6 +56,11 @@ export default function StationsMap({
                 {s.label}, №{s.stationNumber}
               </a>
               <div className="text-xs opacity-70">{s.cecCode}</div>
+              {s.chair ? (
+                <div className="mt-1 text-xs">
+                  {chairLabel}: {s.chair.name} ({s.chair.party})
+                </div>
+              ) : null}
               <a
                 href={mapsUrl(s.lat, s.lng)}
                 target="_blank"

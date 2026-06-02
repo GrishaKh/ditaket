@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Locale } from '@/lib/i18n/routing';
 import { listGeolocatedStations, countStations } from '@/lib/stations';
+import { getCommissionChair } from '@/lib/commission';
 import { MapView } from '@/components/MapView';
 
 // Coordinates come from the committed data/station-coords.json (overlaid onto
@@ -17,8 +18,13 @@ export default async function MapPage({
   setRequestLocale(locale);
   const t = await getTranslations('Map');
   const tStation = await getTranslations('Station');
+  const tCommission = await getTranslations('Commission');
 
   const stations = await listGeolocatedStations(locale);
+  const mapStations = stations.map((s) => ({
+    ...s,
+    chair: getCommissionChair(s.cecCode, locale),
+  }));
   const total = await countStations();
 
   return (
@@ -31,11 +37,12 @@ export default async function MapPage({
       </p>
 
       <div className="mt-8">
-        {stations.length > 0 ? (
+        {mapStations.length > 0 ? (
           <MapView
-            stations={stations}
+            stations={mapStations}
             locale={locale}
             directionsLabel={tStation('openInMaps')}
+            chairLabel={tCommission('chairLabel')}
           />
         ) : (
           <p className="text-navy-700">{t('empty')}</p>

@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import type { GeoStation } from '@/lib/stations';
+import type { CommissionChair } from '@/lib/commission';
 import type { Locale } from '@/lib/i18n/routing';
 
 const StationsMap = dynamic(() => import('./StationsMap'), {
@@ -13,10 +14,13 @@ const StationsMap = dynamic(() => import('./StationsMap'), {
   ),
 });
 
+type MapStation = GeoStation & { chair: CommissionChair | null };
+
 export function MapView(props: {
-  stations: GeoStation[];
+  stations: MapStation[];
   locale: Locale;
   directionsLabel: string;
+  chairLabel: string;
 }) {
   return <StationsMap {...props} />;
 }
