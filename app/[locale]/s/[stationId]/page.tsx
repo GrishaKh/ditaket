@@ -73,6 +73,21 @@ export default async function StationPage({
               />
             </div>
           ) : null}
+          {station.coordAccuracy ? (
+            <p className="mt-1.5 inline-flex items-center gap-1.5 text-xs text-navy-700/70">
+              <span
+                aria-hidden="true"
+                style={{
+                  background:
+                    station.coordAccuracy === 'verified' ? '#2e7d32' : '#e0a800',
+                }}
+                className="inline-block h-2 w-2 rounded-full"
+              />
+              {station.coordAccuracy === 'verified'
+                ? t('coordVerified')
+                : t('coordApprox')}
+            </p>
+          ) : null}
           {station.accessibility ? (
             <p className="mt-2 inline-flex items-center gap-2 rounded-full bg-orange/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-orange-700">
               {t('accessibility')}
