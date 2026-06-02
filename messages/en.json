@@ -37,12 +37,16 @@
     "marz": "Region",
     "community": "Community",
     "stationNumber": "Station number",
-    "openInMaps": "Open in Maps"
+    "openInMaps": "Open in Maps",
+    "coordVerified": "Verified location",
+    "coordApprox": "Approximate location"
   },
   "Map": {
     "title": "Polling-station map",
     "coverage": "{mapped} / {total} stations mapped",
-    "empty": "Coordinates are not available yet"
+    "empty": "Coordinates are not available yet",
+    "accVerified": "Verified",
+    "accApprox": "Approximate"
   },
   "Commission": {
     "title": "Commission",

@@ -37,12 +37,16 @@
     "marz": "Մարզ",
     "community": "Համայնք",
     "stationNumber": "Տեղամասի համար",
-    "openInMaps": "Բացել քարտեզում"
+    "openInMaps": "Բացել քարտեզում",
+    "coordVerified": "Ճշգրտված տեղադիրք",
+    "coordApprox": "Մոտավոր տեղադիրք"
   },
   "Map": {
     "title": "Տեղամասերի քարտեզ",
     "coverage": "{mapped} / {total} տեղամաս քարտեզի վրա",
-    "empty": "Կոորդինատները դեռ հասանելի չեն"
+    "empty": "Կոորդինատները դեռ հասանելի չեն",
+    "accVerified": "ճշգրտված",
+    "accApprox": "մոտավոր"
   },
   "Commission": {
     "title": "ԸԸՀ կազմ",
