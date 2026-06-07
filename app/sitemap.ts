@@ -8,7 +8,7 @@ const STATIC_PATHS = [
   '/info/your-rights',
   '/info/how-to-vote',
   '/about',
-  '/stats',
+  '/live',
   '/status',
   '/marz',
   '/legal/privacy',

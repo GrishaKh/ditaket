@@ -7,7 +7,6 @@
     "home": "Home",
     "stations": "Stations",
     "report": "Report",
-    "stats": "Statistics",
     "info": "Info",
     "about": "About",
     "donate": "Support",
@@ -17,7 +16,7 @@
   "Live": {
     "title": "Live",
     "subtitle": "Real-time monitoring of the electoral process",
-    "disclaimer": "Observer-reported data based on our observers' reports. These are not official CEC results and may cover only a subset of polling stations.",
+    "disclaimer": "Live data recorded by the Ditaket mission's observers.",
     "dashboardTitle": "Current figures",
     "feedTitle": "Updates",
     "issuesTitle": "Main issues and concerns",

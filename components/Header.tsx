@@ -12,7 +12,6 @@ export async function Header({ locale }: { locale: Locale }) {
     { href: `/${locale}/live`, label: t('live') },
     { href: `/${locale}/info`, label: t('info') },
     { href: `/${locale}/map`, label: t('map') },
-    { href: `/${locale}/stats`, label: t('stats') },
     { href: `/${locale}/about`, label: t('about') },
   ];
   const donateHref = `/${locale}/donate`;
