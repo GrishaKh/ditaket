@@ -9,6 +9,7 @@ export async function Header({ locale }: { locale: Locale }) {
   const tCommon = await getTranslations('Common');
 
   const secondaryLinks = [
+    { href: `/${locale}/live`, label: t('live') },
     { href: `/${locale}/info`, label: t('info') },
     { href: `/${locale}/map`, label: t('map') },
     { href: `/${locale}/stats`, label: t('stats') },

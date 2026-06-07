@@ -11,7 +11,22 @@
     "info": "Info",
     "about": "About",
     "donate": "Support",
-    "map": "Map"
+    "map": "Map",
+    "live": "Live"
+  },
+  "Live": {
+    "title": "Live",
+    "subtitle": "Real-time monitoring of the electoral process",
+    "disclaimer": "Observer-reported data based on our observers' reports. These are not official CEC results and may cover only a subset of polling stations.",
+    "dashboardTitle": "Current figures",
+    "feedTitle": "Updates",
+    "issuesTitle": "Main issues and concerns",
+    "casesTitle": "Notable cases",
+    "stationsLabel": "Station(s)",
+    "nextLabel": "Next update",
+    "asOf": "as of",
+    "empty": "No updates yet. Interim summaries will appear here soon.",
+    "badge": "INTERIM SUMMARY"
   },
   "Home": {
     "openBadge": "Reporting is open",
