@@ -99,12 +99,32 @@ export default async function StationPage({
         </Button>
       </header>
 
-      {/* v2 slot — CEC live stream embed lands here on election day */}
+      {/* CEC live broadcast. No per-station deep link exists (electionsonline.am
+          is a POST-form SPA), so we link to the portal and tell the visitor
+          which district + station to pick. A real in-page embed stays v2 —
+          their HLS is CORS-locked to electionsonline.am and capacity-throttled. */}
       <Card className="mt-10" accent="navy">
-        <div className="flex aspect-video w-full items-center justify-center rounded-lg bg-navy-900/5 text-navy-700">
-          <span className="text-sm">
-            Live stream coming June 7 (CEC, Electoral Code Art. 8.11.1)
-          </span>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="min-w-0">
+            <h2 className="font-display text-xl font-bold text-navy-900">
+              {t('liveTitle')}
+            </h2>
+            <p className="mt-1 text-sm text-navy-700">
+              {t('livePick', {
+                district: station.district,
+                code: station.cecCode,
+              })}
+            </p>
+          </div>
+          <Button
+            as="a"
+            href="https://electionsonline.am/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0"
+          >
+            {t('liveCta')}
+          </Button>
         </div>
       </Card>
 

@@ -39,7 +39,10 @@
     "stationNumber": "Տեղամասի համար",
     "openInMaps": "Բացել քարտեզում",
     "coordVerified": "Ճշգրտված տեղադիրք",
-    "coordApprox": "Մոտավոր տեղադիրք"
+    "coordApprox": "Մոտավոր տեղադիրք",
+    "liveTitle": "Դիտել ուղիղ հեռարձակումը ԿԸՀ-ի կայքում",
+    "livePick": "electionsonline.am կայքում ընտրեք՝ «Ընտրատարածք» № {district}, ապա «Ընտրական տեղամաս» № {code}",
+    "liveCta": "Բացել ԿԸՀ հեռարձակումը"
   },
   "Map": {
     "title": "Տեղամասերի քարտեզ",

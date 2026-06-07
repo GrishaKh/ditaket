@@ -39,7 +39,10 @@
     "stationNumber": "Station number",
     "openInMaps": "Open in Maps",
     "coordVerified": "Verified location",
-    "coordApprox": "Approximate location"
+    "coordApprox": "Approximate location",
+    "liveTitle": "Watch the live CEC broadcast",
+    "livePick": "On electionsonline.am (Armenian only), select «Ընտրատարածք» (district) № {district}, then «Ընտրական տեղամաս» (station) № {code}",
+    "liveCta": "Open CEC broadcast"
   },
   "Map": {
     "title": "Polling-station map",
