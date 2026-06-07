@@ -19,8 +19,10 @@ export const metadata: Metadata = {
   },
   description:
     "Public civic-monitoring portal for Armenia's 2026 parliamentary elections. Anonymous violation reporting + polling-station info.",
+  // `||` (not `??`) so an empty-string env value also falls back — otherwise
+  // `new URL('')` throws at build time and breaks every page's metadata.
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? 'https://ditaket.vercel.app',
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://ditaket.vercel.app',
   ),
   openGraph: {
     type: 'website',
