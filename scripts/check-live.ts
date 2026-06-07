@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { livePostInputSchema, livePostPatchSchema } from '../lib/live/schema';
-import { pickContent, counterLabel, formatCount } from '../lib/live/format';
+import { pickContent, counterLabel, formatCount, formatTime } from '../lib/live/format';
 
 // 1. Minimal valid input (am title only) passes and applies defaults.
 const ok = livePostInputSchema.safeParse({
@@ -60,5 +60,9 @@ assert.equal(counterLabel(c, 'ru'), 'Հայ', 'counter ru falls back');
 
 // formatCount returns a non-empty string for a number.
 assert.ok(formatCount(12450, 'am').length > 0, 'formatCount works');
+
+// formatTime pins Armenia time regardless of the host timezone:
+// 09:00 UTC == 13:00 in Yerevan (UTC+4).
+assert.equal(formatTime('2026-06-07T09:00:00Z', 'am'), '13:00', 'formatTime pins Yerevan');
 
 console.log('check-live: schema OK');

@@ -26,6 +26,9 @@ export function formatTime(date: Date | string, locale: Locale): string {
   return new Intl.DateTimeFormat(intlLocale(locale), {
     hour: '2-digit',
     minute: '2-digit',
+    // Pin Armenia time: the page renders server-side (Vercel = UTC), so without
+    // an explicit zone "13:00" would display as the UTC hour.
+    timeZone: 'Asia/Yerevan',
   }).format(d);
 }
 
