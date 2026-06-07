@@ -9,7 +9,10 @@ import {
   uuid,
   index,
   primaryKey,
+  jsonb,
 } from "drizzle-orm/pg-core";
+import { sql } from "drizzle-orm";
+import type { LiveCounter, LivePostContent } from "@/lib/live/types";
 
 /**
  * Polling stations — sourced from the CEC registry
@@ -130,8 +133,39 @@ export const statsSnapshots = pgTable(
   }),
 );
 
+/**
+ * Editorial election-day updates shown at /live. Authored by the mission
+ * coordinator through /admin/live — NOT public submissions. Dashboard counters
+ * are derived from the most recent interim_summary's `counters`.
+ */
+export const livePosts = pgTable(
+  "live_posts",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    kind: text("kind").notNull().default("interim_summary"), // 'interim_summary' | 'flash'
+    pinned: boolean("pinned").notNull().default(false),
+    publishedAt: timestamp("published_at").notNull().defaultNow(),
+    asOf: timestamp("as_of"), // the "ժ. 13:00 դրությամբ" stamp; NULL → publishedAt
+    counters: jsonb("counters")
+      .$type<LiveCounter[]>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    content: jsonb("content")
+      .$type<LivePostContent>()
+      .notNull()
+      .default(sql`'{}'::jsonb`),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
+    updatedAt: timestamp("updated_at").notNull().defaultNow(),
+  },
+  (t) => ({
+    feedIdx: index("live_posts_feed_idx").on(t.pinned, t.publishedAt),
+  }),
+);
+
 export type Station = typeof stations.$inferSelect;
 export type NewStation = typeof stations.$inferInsert;
 export type Event = typeof events.$inferSelect;
 export type NewEvent = typeof events.$inferInsert;
 export type ViolationCategory = typeof violationCategories.$inferSelect;
+export type LivePost = typeof livePosts.$inferSelect;
+export type NewLivePost = typeof livePosts.$inferInsert;
