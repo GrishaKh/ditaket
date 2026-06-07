@@ -76,6 +76,14 @@ export default async function StatsPage({
       <p className="mt-3 text-sm text-navy-700/70">
         {tCommon('unverifiedNotice')}
       </p>
+      <p className="mt-2 text-sm">
+        <a
+          href={`/${locale}/live`}
+          className="font-semibold text-orange hover:text-orange-600"
+        >
+          {tNav('live')} →
+        </a>
+      </p>
 
       <section className="mt-10">
         <Card accent="orange">
