@@ -4,23 +4,13 @@ import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { CopyValue } from '@/components/ui/CopyValue';
 
-// Locale-agnostic NGO requisites. Values starting with `TODO_` are rendered as
-// styled "coming soon" placeholders until the user confirms them.
+// Locale-agnostic NGO requisites.
 const DATA = {
   organizationAm:
     '«Համայնքի երիտասարդներ համայնքային զարգացման» հասարակական կազմակերպություն',
-  organizationLatin: 'TODO_BENEFICIARY_LATIN',
   tin: '05557886',
-  addressAm:
-    'ՀՀ, Շիրակի մարզ, ք. Արթիկ, Նոր կյանք 10 փակ., տուն 1',
-  addressLatin: 'TODO_ADDRESS_LATIN',
   bankAm: 'Յունիբանկ ԲԲԸ',
-  bankLatin: 'TODO_BANK_LATIN',
-  bankAddress: 'TODO_BANK_ADDRESS',
-  swift: 'TODO_SWIFT',
   account: '24103052425000',
-  idram: 'TODO_IDRAM',
-  easypay: 'TODO_EASYPAY',
   facebookUrl: 'https://www.facebook.com/ditaket.ditord',
   facebookLabel: 'facebook.com/ditaket.ditord',
 } as const;
@@ -31,18 +21,6 @@ const PURPOSE: Record<Locale, string> = {
   ru: 'Пожертвование — наблюдательная миссия',
 };
 
-const PENDING_LABEL: Record<Locale, string> = {
-  am: '(կտրամադրվի շուտով)',
-  en: '(coming soon)',
-  ru: '(скоро будет добавлено)',
-};
-
-const COMING_SOON: Record<Locale, string> = {
-  am: 'Շուտով',
-  en: 'Coming soon',
-  ru: 'Скоро',
-};
-
 type BankLabels = {
   organization: string;
   tin: string;
@@ -51,29 +29,11 @@ type BankLabels = {
   purpose: string;
 };
 
-type SwiftLabels = {
-  beneficiary: string;
-  beneficiaryAddress: string;
-  account: string;
-  tin: string;
-  bank: string;
-  bankAddress: string;
-  swift: string;
-  purpose: string;
-};
-
-type WalletLabels = {
-  idram: string;
-  easypay: string;
-};
-
 type Content = {
   heroBadge: string;
   title: string;
   lead: string;
   bank: { heading: string; intro: string; labels: BankLabels };
-  swift: { heading: string; intro: string; labels: SwiftLabels };
-  wallets: { heading: string; intro: string; labels: WalletLabels };
   transparency: { heading: string; body: string };
 };
 
@@ -92,29 +52,6 @@ const CONTENT: Record<Locale, Content> = {
         bank: 'Բանկ',
         account: 'Հաշվեհամար',
         purpose: 'Վճարման նպատակ',
-      },
-    },
-    swift: {
-      heading: 'Արտերկրյա փոխանցում (SWIFT)',
-      intro:
-        'Հայաստանից դուրս փոխանցումների համար (USD, EUR և այլն)։ Փոխանցման կոնկրետ արժույթի և թղթակից բանկի տվյալները ճշտիր քո բանկից։',
-      labels: {
-        beneficiary: 'Ստացող (Beneficiary)',
-        beneficiaryAddress: 'Ստացողի հասցե',
-        account: 'Հաշվեհամար (IBAN/Account)',
-        tin: 'ՀՎՀՀ (TIN)',
-        bank: 'Ստացողի բանկ',
-        bankAddress: 'Բանկի հասցե',
-        swift: 'SWIFT / BIC',
-        purpose: 'Վճարման նպատակ',
-      },
-    },
-    wallets: {
-      heading: 'Հայաստանյան էլեկտրոնային դրամապանակներ',
-      intro: 'Արագ փոխանցում բջջային հավելվածից։',
-      labels: {
-        idram: 'IDram ID',
-        easypay: 'EasyPay հաշիվ',
       },
     },
     transparency: {
@@ -139,29 +76,6 @@ const CONTENT: Record<Locale, Content> = {
         purpose: 'Payment purpose',
       },
     },
-    swift: {
-      heading: 'International wire (SWIFT)',
-      intro:
-        'For transfers from outside Armenia (USD, EUR, etc.). Confirm currency and correspondent-bank details with your sending bank.',
-      labels: {
-        beneficiary: 'Beneficiary',
-        beneficiaryAddress: 'Beneficiary address',
-        account: 'Account (IBAN)',
-        tin: 'TIN',
-        bank: 'Beneficiary bank',
-        bankAddress: 'Bank address',
-        swift: 'SWIFT / BIC',
-        purpose: 'Payment purpose',
-      },
-    },
-    wallets: {
-      heading: 'Armenian digital wallets',
-      intro: 'Fast transfers from a mobile app.',
-      labels: {
-        idram: 'IDram ID',
-        easypay: 'EasyPay account',
-      },
-    },
     transparency: {
       heading: 'Transparency & contact',
       body:
@@ -184,29 +98,6 @@ const CONTENT: Record<Locale, Content> = {
         purpose: 'Назначение платежа',
       },
     },
-    swift: {
-      heading: 'Международный перевод (SWIFT)',
-      intro:
-        'Для переводов из-за рубежа (USD, EUR и др.). Валюту и реквизиты банка-корреспондента уточните у банка-отправителя.',
-      labels: {
-        beneficiary: 'Получатель (Beneficiary)',
-        beneficiaryAddress: 'Адрес получателя',
-        account: 'Счёт (IBAN)',
-        tin: 'ИНН (TIN)',
-        bank: 'Банк бенефициара',
-        bankAddress: 'Адрес банка',
-        swift: 'SWIFT / BIC',
-        purpose: 'Назначение платежа',
-      },
-    },
-    wallets: {
-      heading: 'Армянские электронные кошельки',
-      intro: 'Быстрый перевод из мобильного приложения.',
-      labels: {
-        idram: 'IDram ID',
-        easypay: 'Счёт EasyPay',
-      },
-    },
     transparency: {
       heading: 'Прозрачность и контакт',
       body:
@@ -218,26 +109,19 @@ const CONTENT: Record<Locale, Content> = {
 function Field({
   label,
   value,
-  locale,
   mono = false,
   copy = false,
 }: {
   label: string;
   value: string;
-  locale: Locale;
   mono?: boolean;
   copy?: boolean;
 }) {
-  const pending = value.startsWith('TODO_');
   return (
     <div className="flex flex-col gap-0.5 border-b border-navy-900/5 py-2 last:border-b-0 sm:flex-row sm:items-baseline sm:gap-4">
       <dt className="shrink-0 text-sm text-navy-700 sm:w-44">{label}</dt>
       <dd className="min-w-0 break-words text-navy-900">
-        {pending ? (
-          <span className="italic text-orange-700">
-            {PENDING_LABEL[locale]}
-          </span>
-        ) : copy ? (
+        {copy ? (
           <CopyValue value={value} mono={mono} />
         ) : (
           <span className={mono ? 'font-mono tracking-tight' : ''}>{value}</span>
@@ -274,118 +158,18 @@ export default async function DonatePage({
           <p className="mt-2 text-navy-700">{c.bank.intro}</p>
           <dl className="mt-4">
             <Field
-              locale={locale}
               label={c.bank.labels.organization}
               value={DATA.organizationAm}
             />
+            <Field label={c.bank.labels.tin} value={DATA.tin} mono copy />
+            <Field label={c.bank.labels.bank} value={DATA.bankAm} />
             <Field
-              locale={locale}
-              label={c.bank.labels.tin}
-              value={DATA.tin}
-              mono
-              copy
-            />
-            <Field
-              locale={locale}
-              label={c.bank.labels.bank}
-              value={DATA.bankAm}
-            />
-            <Field
-              locale={locale}
               label={c.bank.labels.account}
               value={DATA.account}
               mono
               copy
             />
-            <Field
-              locale={locale}
-              label={c.bank.labels.purpose}
-              value={PURPOSE[locale]}
-            />
-          </dl>
-        </Card>
-
-        <Card accent="navy">
-          <h2 className="flex flex-wrap items-center gap-2 font-display text-xl font-bold text-navy-900">
-            {c.swift.heading}
-            <span className="rounded-full bg-navy-900/10 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-navy-700">
-              {COMING_SOON[locale]}
-            </span>
-          </h2>
-          <p className="mt-2 text-navy-700">{c.swift.intro}</p>
-          <dl className="mt-4">
-            <Field
-              locale={locale}
-              label={c.swift.labels.beneficiary}
-              value={DATA.organizationLatin}
-            />
-            <Field
-              locale={locale}
-              label={c.swift.labels.beneficiaryAddress}
-              value={DATA.addressLatin}
-            />
-            <Field
-              locale={locale}
-              label={c.swift.labels.account}
-              value={DATA.account}
-              mono
-              copy
-            />
-            <Field
-              locale={locale}
-              label={c.swift.labels.tin}
-              value={DATA.tin}
-              mono
-              copy
-            />
-            <Field
-              locale={locale}
-              label={c.swift.labels.bank}
-              value={DATA.bankLatin}
-            />
-            <Field
-              locale={locale}
-              label={c.swift.labels.bankAddress}
-              value={DATA.bankAddress}
-            />
-            <Field
-              locale={locale}
-              label={c.swift.labels.swift}
-              value={DATA.swift}
-              mono
-              copy
-            />
-            <Field
-              locale={locale}
-              label={c.swift.labels.purpose}
-              value="Donation — election observation mission"
-            />
-          </dl>
-        </Card>
-
-        <Card accent="navy">
-          <h2 className="flex flex-wrap items-center gap-2 font-display text-xl font-bold text-navy-900">
-            {c.wallets.heading}
-            <span className="rounded-full bg-navy-900/10 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-navy-700">
-              {COMING_SOON[locale]}
-            </span>
-          </h2>
-          <p className="mt-2 text-navy-700">{c.wallets.intro}</p>
-          <dl className="mt-4">
-            <Field
-              locale={locale}
-              label={c.wallets.labels.idram}
-              value={DATA.idram}
-              mono
-              copy
-            />
-            <Field
-              locale={locale}
-              label={c.wallets.labels.easypay}
-              value={DATA.easypay}
-              mono
-              copy
-            />
+            <Field label={c.bank.labels.purpose} value={PURPOSE[locale]} />
           </dl>
         </Card>
 
