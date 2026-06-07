@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { livePostInputSchema, livePostPatchSchema } from '../lib/live/schema';
+import { pickContent, counterLabel, formatCount } from '../lib/live/format';
 
 // 1. Minimal valid input (am title only) passes and applies defaults.
 const ok = livePostInputSchema.safeParse({
@@ -46,5 +47,18 @@ assert.ok(
     .success,
   'patch with id passes',
 );
+
+// pickContent falls back to am when the requested locale is missing.
+const content = { am: { title: 'Հայ' }, en: { title: 'EN' } };
+assert.equal(pickContent(content, 'en').title, 'EN', 'picks en');
+assert.equal(pickContent(content, 'ru').title, 'Հայ', 'ru falls back to am');
+
+// counterLabel falls back to am when the locale label is absent.
+const c = { id: 'x', value: 1, labelAm: 'Հայ', labelEn: 'EN' };
+assert.equal(counterLabel(c, 'en'), 'EN', 'counter en');
+assert.equal(counterLabel(c, 'ru'), 'Հայ', 'counter ru falls back');
+
+// formatCount returns a non-empty string for a number.
+assert.ok(formatCount(12450, 'am').length > 0, 'formatCount works');
 
 console.log('check-live: schema OK');
