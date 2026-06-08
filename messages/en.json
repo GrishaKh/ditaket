@@ -11,7 +11,15 @@
     "about": "About",
     "donate": "Support",
     "map": "Map",
-    "live": "Live"
+    "live": "Live",
+    "news": "News"
+  },
+  "News": {
+    "title": "CEC News",
+    "subtitle": "Official Central Electoral Commission communications around the 2026 parliamentary election — summarised, with a link to each source.",
+    "featured": "Key update",
+    "source": "Read on elections.am",
+    "empty": "News will appear here soon."
   },
   "Live": {
     "title": "Live",

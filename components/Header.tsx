@@ -10,6 +10,7 @@ export async function Header({ locale }: { locale: Locale }) {
 
   const secondaryLinks = [
     { href: `/${locale}/live`, label: t('live') },
+    { href: `/${locale}/news`, label: t('news') },
     { href: `/${locale}/info`, label: t('info') },
     { href: `/${locale}/map`, label: t('map') },
     { href: `/${locale}/about`, label: t('about') },
