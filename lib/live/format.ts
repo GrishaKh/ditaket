@@ -1,4 +1,5 @@
 import type { Locale } from '@/lib/i18n/routing';
+import { intlLocale } from '@/lib/i18n/locale';
 import type { LiveCounter, LivePostContent, SummaryContent } from './types';
 
 const EMPTY: SummaryContent = { title: '' };
@@ -15,10 +16,6 @@ export function counterLabel(c: LiveCounter, locale: Locale): string {
   if (locale === 'en') return c.labelEn ?? c.labelAm;
   if (locale === 'ru') return c.labelRu ?? c.labelAm;
   return c.labelAm;
-}
-
-function intlLocale(locale: Locale): string {
-  return locale === 'am' ? 'hy-AM' : locale;
 }
 
 export function formatTime(date: Date | string, locale: Locale): string {

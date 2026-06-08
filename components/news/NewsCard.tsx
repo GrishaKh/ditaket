@@ -7,10 +7,12 @@ export function NewsCard({
   item,
   locale,
   sourceLabel,
+  newTabLabel,
 }: {
   item: CecNewsItem;
   locale: Locale;
   sourceLabel: string;
+  newTabLabel: string;
 }) {
   return (
     <a
@@ -19,7 +21,7 @@ export function NewsCard({
       rel="noopener noreferrer"
       className="focus-ring group flex h-full flex-col overflow-hidden rounded-2xl border border-navy-900/15 bg-cream-50 transition-shadow hover:border-navy-900/30 hover:shadow-[0_8px_30px_rgba(19,36,63,0.08)]"
     >
-      <NewsThumb item={item} className="aspect-[16/9]" />
+      <NewsThumb src={item.image} className="aspect-[16/9]" />
       <div className="flex flex-1 flex-col p-5">
         <time
           dateTime={item.date}
@@ -42,6 +44,7 @@ export function NewsCard({
             →
           </span>
         </span>
+        <span className="sr-only">{newTabLabel}</span>
       </div>
     </a>
   );

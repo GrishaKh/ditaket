@@ -8,11 +8,13 @@ export function FeaturedNewsCard({
   locale,
   featuredLabel,
   sourceLabel,
+  newTabLabel,
 }: {
   item: CecNewsItem;
   locale: Locale;
   featuredLabel: string;
   sourceLabel: string;
+  newTabLabel: string;
 }) {
   return (
     <a
@@ -22,7 +24,8 @@ export function FeaturedNewsCard({
       className="focus-ring group grid overflow-hidden rounded-3xl border border-navy-900/15 bg-cream-50 transition-shadow hover:shadow-[0_12px_40px_rgba(19,36,63,0.12)] md:grid-cols-2"
     >
       <NewsThumb
-        item={item}
+        src={item.image}
+        eager
         className="aspect-[16/10] md:aspect-auto md:min-h-[18rem]"
       />
       <div className="flex flex-col justify-center p-6 sm:p-8">
@@ -51,6 +54,7 @@ export function FeaturedNewsCard({
             →
           </span>
         </span>
+        <span className="sr-only">{newTabLabel}</span>
       </div>
     </a>
   );

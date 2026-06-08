@@ -1,20 +1,21 @@
-import type { CecNewsItem } from '@/lib/content/cec-news';
 import { cn } from '@/lib/utils';
 
 export function NewsThumb({
-  item,
+  src,
   className,
+  eager,
 }: {
-  item: CecNewsItem;
+  src?: string;
   className?: string;
+  eager?: boolean;
 }) {
-  if (item.image) {
+  if (src) {
     // eslint-disable-next-line @next/next/no-img-element
     return (
       <img
-        src={item.image}
+        src={src}
         alt=""
-        loading="lazy"
+        loading={eager ? 'eager' : 'lazy'}
         className={cn('h-full w-full object-cover', className)}
       />
     );

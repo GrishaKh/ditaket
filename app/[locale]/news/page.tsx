@@ -37,6 +37,7 @@ export default async function NewsPage({
                 locale={locale}
                 featuredLabel={t('featured')}
                 sourceLabel={t('source')}
+                newTabLabel={t('opensNewTab')}
               />
             </section>
           ) : null}
@@ -48,6 +49,7 @@ export default async function NewsPage({
                   item={item}
                   locale={locale}
                   sourceLabel={t('source')}
+                  newTabLabel={t('opensNewTab')}
                 />
               ))}
             </section>
