@@ -121,14 +121,16 @@ function parseItem(id: number, html: string): RawItem {
   // Date: <div class="post-meta animate-onscroll"><span>DD ArmenianMonth, YYYY</span>
   // (after entity decoding)
   const metaSpan = html.match(/class="post-meta animate-onscroll"[\s\S]*?<span>([\s\S]*?)<\/span>/);
-  const rawDate = metaSpan ? decodeEntities(metaSpan[1]).trim() : '';
+  const rawDate = metaSpan ? decodeEntities(metaSpan[1]!).trim() : '';
   const date = parseArmenianDate(rawDate);
 
   // Body: <div class="post-content">…</div>
   const content = html.match(
     /class="post-content"[^>]*>([\s\S]*?)(?=<div class="post-meta-track"|<\/article>|<footer|$)/,
   );
-  const bodyAm = stripTags(content?.[1] ?? '');
+  const bodyAm = stripTags(content?.[1] ?? '')
+    .replace(/\s*Կիսվել[\s\S]*$/u, '')
+    .trim();
 
   // Image: prefer og:image meta (reliable URL), fall back to inline img in .slides
   const ogImg = html.match(
@@ -162,8 +164,10 @@ async function downloadImage(url: string, id: number, outDir: string): Promise<s
 async function main() {
   const sinceArg = process.argv.find((a) => a.startsWith('--since='));
   const since = sinceArg ? sinceArg.split('=')[1]! : DEFAULT_SINCE;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(since)) throw new Error(`--since must be YYYY-MM-DD, got: ${since}`);
   const publicDir = resolve(process.cwd(), 'public/news');
   await mkdir(publicDir, { recursive: true });
+  await mkdir(resolve(process.cwd(), 'data'), { recursive: true });
 
   const top = await latestId();
   console.log(`Latest news id: ${top}; collecting items dated >= ${since}`);
