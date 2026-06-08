@@ -15,7 +15,8 @@
     "db:studio": "drizzle-kit studio",
     "seed:categories": "tsx scripts/seed-categories.ts",
     "import:stations": "tsx scripts/import-stations.ts",
-    "import:coords": "tsx scripts/import-station-coords.ts"
+    "import:coords": "tsx scripts/import-station-coords.ts",
+    "import:news": "tsx scripts/import-cec-news.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
