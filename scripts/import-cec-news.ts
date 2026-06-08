@@ -138,13 +138,14 @@ function parseItem(id: number, html: string): RawItem {
     /https?:\/\/res\.elections\.am\/images\/News\/[^"'\s)]+\.(?:jpe?g|png)/i,
   );
 
+  const rawImageSource = ogImg?.[1] ?? slideImg?.[0];
   return {
     id,
     sourceUrl: `${BASE}/News/Item/${id}`,
     date,
     titleAm,
     bodyAm,
-    imageSource: ogImg?.[1] ?? slideImg?.[0],
+    imageSource: rawImageSource ? decodeEntities(rawImageSource) : undefined,
   };
 }
 
